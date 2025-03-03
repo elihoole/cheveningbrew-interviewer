@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import './Interview.css';
+import './Interview.module.css';
 
 const Interview = () => {
   const [isRecording, setIsRecording] = useState(false);

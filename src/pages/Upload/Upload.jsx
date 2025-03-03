@@ -1,20 +1,22 @@
+// src/pages/Upload/Upload.jsx
 import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import './Upload.css';
+import styles from './Upload.module.css'; // Changed to use CSS Modules
 
 const Upload = () => {
   return (
     <MainLayout>
-      <div className="upload-container max-w-md w-full mx-auto">
-        <div className="content">
-          <h1 className="text-3xl font-bold mb-8 text-white">Upload Essays</h1>
-          
-          <div className="upload-box bg-white/10 p-8 rounded-lg backdrop-blur-sm">
-            <div className="upload-area border-2 border-dashed border-white/30 rounded-lg p-8 text-center">
-              <div className="text-white mb-4">
+      <div className="h-[calc(100vh-8rem)] flex items-center justify-center">
+        <div className={styles.uploadContainer}>
+          <h1 className="text-2xl font-bold text-black mb-8 text-center">
+            Upload Essays
+          </h1>
+          <div className={styles.uploadBox}>
+            <div className={styles.uploadArea}>
+              <p className="text-black text-lg mb-6">
                 Drop your essay here or click to upload
-              </div>
-              <button className="bg-gradient-to-br from-[#dd0c7e] via-[#ca1582] to-[#a6208e] text-white px-6 py-2 rounded-full">
+              </p>
+              <button className="bg-gradient-to-br from-[#dd0c7e] via-[#ca1582] to-[#a6208e] text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 text-lg font-medium">
                 Choose File
               </button>
             </div>

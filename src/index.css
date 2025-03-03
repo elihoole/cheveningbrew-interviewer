@@ -195,3 +195,9 @@ input:focus, textarea:focus {
   backdrop-filter: blur(10px);
   border: 1px solid var(--neutral-500);
 }
+
+.container {
+  max-width: 1200px; /* Or whatever max width you prefer */
+  margin: 0 auto;
+  padding: 20px; /* Adjust as needed */
+}

@@ -1,9 +1,10 @@
+// src/components/Header/Tabs/Tabs.jsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Tabs = () => {
   const location = useLocation();
-  
+
   const tabs = [
     { path: '/upload', label: 'Upload' },
     { path: '/interview', label: 'Interview' },
@@ -11,18 +12,22 @@ const Tabs = () => {
   ];
 
   return (
-    <nav className="flex space-x-4">
-      {tabs.map((tab) => (
-        <Link
-          key={tab.path}
-          to={tab.path}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 
-            ${location.pathname === tab.path 
-              ? 'bg-gradient-to-br from-[#dd0c7e] via-[#ca1582] to-[#a6208e] text-white shadow-lg' 
-              : 'text-gray-600 hover:text-[#dd0c7e]'}`}
-        >
-          {tab.label}
-        </Link>
+    <nav className="flex items-center justify-center w-full">
+      {tabs.map((tab, index) => (
+        <React.Fragment key={tab.path}>
+          <Link
+            to={tab.path}
+            className={`px-8 py-2 text-base font-medium transition-all duration-300 text-center min-w-[120px]
+              ${location.pathname === tab.path 
+                ? 'text-[#dd0c7e] font-semibold' 
+                : 'text-gray-600 hover:text-[#dd0c7e]'}`}
+          >
+            {tab.label}
+          </Link>
+          {index < tabs.length - 1 && (
+            <span className="text-gray-400 text-xl px-2">|</span>
+          )}
+        </React.Fragment>
       ))}
     </nav>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import './Feedback.css';
+import './Feedback.module.css';
 
 const Feedback = () => {
   return (

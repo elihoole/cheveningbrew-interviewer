@@ -4,13 +4,13 @@ import Tabs from './Tabs/Tabs';
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Logo />
+    <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-50">
+      <nav className="container mx-auto flex flex-col items-center py-6">
+        <Logo />
+        <div className="mt-6 w-full max-w-2xl">
           <Tabs />
         </div>
-      </div>
+      </nav>
     </header>
   );
 };
