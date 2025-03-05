@@ -1,34 +1,47 @@
 import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import './Feedback.module.css';
+import styles from './Feedback.module.css';  // Import the CSS module
+import  '../../index.css';
 
 const Feedback = () => {
   return (
     <MainLayout>
-      <div className="feedback-container max-w-md w-full mx-auto">
-        <div className="content">
+      <div className={styles.feedbackContainer}>
+        <div className={styles.content}>
           <h1 className="text-3xl font-bold mb-8 text-white">Interview Feedback</h1>
-          
-          <div className="feedback-box bg-white/10 p-8 rounded-lg backdrop-blur-sm">
-            <div className="feedback-section mb-6">
+
+          <div className={styles.feedbackBox}>
+            <div className={styles.feedbackSection}>
               <h2 className="text-white text-xl mb-4">Content Analysis</h2>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '75%' }}></div>
+              <div className={styles.progressBar}>
+                <div className={styles.progress} style={{ width: '75%' }}></div>
               </div>
-              <p className="text-white/70 mt-2">Your response was clear and structured</p>
+              <p className="text-white/70 mt-2">Your response was clear and structured.</p>
             </div>
 
-            <div className="feedback-section mb-6">
+            <div className={styles.feedbackSection}>
               <h2 className="text-white text-xl mb-4">Delivery</h2>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '85%' }}></div>
+              <div className={styles.progressBar}>
+                <div className={styles.progress} style={{ width: '85%' }}></div>
               </div>
-              <p className="text-white/70 mt-2">Excellent pace and clarity</p>
+              <p className="text-white/70 mt-2">The delivery was confident and articulate.</p>
             </div>
 
-            <button className="bg-gradient-to-br from-[#dd0c7e] via-[#ca1582] to-[#a6208e] text-white px-6 py-2 rounded-full w-full mt-6">
-              View Detailed Report
-            </button>
+            <div className={styles.feedbackSection}>
+              <h2 className="text-white text-xl mb-4">Technical Knowledge</h2>
+              <div className={styles.progressBar}>
+                <div className={styles.progress} style={{ width: '60%' }}></div>
+              </div>
+              <p className="text-white/70 mt-2">The technical knowledge was strong, but more depth could be shown in some areas.</p>
+            </div>
+
+            <div className={styles.feedbackSection}>
+              <h2 className="text-white text-xl mb-4">Overall Impression</h2>
+              <div className={styles.progressBar}>
+                <div className={styles.progress} style={{ width: '80%' }}></div>
+              </div>
+              <p className="text-white/70 mt-2">Great overall impression, just work on specific technical aspects.</p>
+            </div>
           </div>
         </div>
       </div>

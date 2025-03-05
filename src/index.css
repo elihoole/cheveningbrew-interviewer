@@ -69,9 +69,9 @@ body {
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--gradient-primary);
+  background: linear-gradient(to bottom, #4B0082, #800080);  /* Updated gradient */
   color: var(--neutral-200);
-  min-height: 100vh;
+  min-height: 100vh;  /* Ensures that the background covers the full height */
 }
 
 /* Typography Styles */
@@ -189,7 +189,6 @@ input:focus, textarea:focus {
 .font-extrabold { font-weight: 800; }
 .font-black { font-weight: 900; }
 
-/* Glass effect */
 .glass {
   background: var(--gradient-overlay);
   backdrop-filter: blur(10px);
@@ -197,7 +196,10 @@ input:focus, textarea:focus {
 }
 
 .container {
-  max-width: 1200px; /* Or whatever max width you prefer */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px; /* Adjust as needed */
+  padding: 20px;
 }
+
+  
+

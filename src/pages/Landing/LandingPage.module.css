@@ -1,0 +1,131 @@
+/* Style the main container */
+
+.container {
+  padding: 100px;
+  background: linear-gradient(to bottom, #4B0082, #800080);  /* Gradient background */
+  height: auto;
+  color: white;
+  font-family: 'Cascadia Mono', monospace;
+}
+
+/* LandingPage.module.css */
+
+/* Specific style for h1 on LandingPage */
+.landingPageH1 {
+  color: white;
+  font-size: 5rem;
+  margin-bottom: 20px;
+  font-family: 'Dancing Script', cursive, sans-serif;
+}
+
+/* Style the paragraph */
+p {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-family: 'Cascadia Mono', monospace;
+}
+
+/* Timeline Container */
+.timeline-container {
+  width: 100%;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  margin-top: 30px; /* Space between landing content and timeline */
+  position: relative;
+}
+
+/* Title of the timeline */
+.timeline-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;  /* Align text to left */
+  position: absolute;
+  left: -372px;  /* Align with the timeline bullets */
+  top: 0;
+}
+
+/* The timeline itself */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* The vertical line that connects the events */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: #ccc;
+  transform: translateX(-50%);
+  left: -8px; /* Position to the left of the event content */
+}
+
+/* Each event's container */
+.timeline-event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin-left: auto; /* Align events to the right */
+}
+
+/* The bullet point at each event */
+.timeline-bullet {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: -355px; /* Position to the left of the event content */
+  z-index: 1;
+}
+
+/* The content of each event */
+.timeline-content {
+  max-width: 800px;
+  padding-right: 30px;
+  
+}
+
+/* The title of each event */
+.timeline-event-title {
+  font-size: 1.2rem;
+  font-weight: reguler;
+  padding-top: 30px;
+  margin-bottom: 10px;
+  position: relative;  /* Ensures positioning within its parent */
+  left: -300px;  /* Adjust to align with the timeline */
+  font-family: 'Cascadia Mono', monospace;
+}
+
+/* Style the button only on the landing page */
+.landingPageButton {
+  margin-left: 40px;
+  padding-top: 10px;
+  padding-right: 50px;
+  padding-left: 100px;
+  margin-top: -5px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Cascadia Mono', monospace;
+}
+
+/* Hover effect */
+.landingPageButton:hover {
+  background-color: white;
+  color: #dd0c7e;
+}

@@ -1,29 +1,63 @@
-/* src/pages/Upload/Upload.module.css (Using CSS Modules) */
+body {
+  padding: 100px;
+  background: linear-gradient(to bottom, #4B0082, #800080);  /* Gradient background */
+  height: auto;
+  color: white;
+  font-family: 'Cascadia Mono', monospace;
+
+}
+
 .uploadContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 480px;
-  padding: 3rem;
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  height: auto; /* Allow the height to expand based on content */
+  min-height: 100vh; /* Ensure the container takes at least the full height of the viewport */
+  padding-top: 130px;
+  padding-bottom: 20px; /* Optionally add some space at the bottom */
+  
 }
 
 .uploadBox {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 90px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .uploadArea {
-  border: 2px dashed #666;
-  border-radius: 1rem;
-  padding: 3rem;
-  text-align: center;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 100px;
+  border-radius: 8px;
   cursor: pointer;
-  background: #f8f8f8;
 }
 
-.uploadArea:hover {
-  border-color: #dd0c7e;
-  background: #fff;
-  transform: translateY(-2px);
+button {
+  background-color: transparent;
+  color: white;
+  padding: 10px 30px;
+  border: 2px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 70px;
+}
+
+button:hover {
+  background-color: white;
+  color: #dd0c7e;
+}
+h1{
+  font-family: 'Cascadia Mono', monospace;
 }

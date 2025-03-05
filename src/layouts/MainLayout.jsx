@@ -1,14 +1,16 @@
-// MainLayout.jsx
+// src/layouts/MainLayout.jsx
 import React from 'react';
-import Header from '../components/Header/Header';
+import Tabs from '../components/Header/Tabs/Tabs'; // Adjust path if needed
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#2B3147]">
-      <Header />
-      <main className="pt-32">
-        {children}
-      </main>
+    <div className="main-layout" style={{ background: 'linear-gradient(to bottom, #4B0082, #800080)', height: '100vh' }}>
+      <div className="sidebar-container" style={{ display: 'flex' }}>
+        <Tabs /> {/* Sidebar navigation */}
+        <div className="content" style={{ flexGrow: 1 }}>
+          {children} {/* Main content */}
+        </div>
+      </div>
     </div>
   );
 };

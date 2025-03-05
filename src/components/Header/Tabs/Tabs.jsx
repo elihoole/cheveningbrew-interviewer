@@ -1,4 +1,3 @@
-// src/components/Header/Tabs/Tabs.jsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,24 +11,28 @@ const Tabs = () => {
   ];
 
   return (
-    <nav className="flex items-center justify-center w-full">
-      {tabs.map((tab, index) => (
-        <React.Fragment key={tab.path}>
-          <Link
-            to={tab.path}
-            className={`px-8 py-2 text-base font-medium transition-all duration-300 text-center min-w-[120px]
-              ${location.pathname === tab.path 
-                ? 'text-[#dd0c7e] font-semibold' 
-                : 'text-gray-600 hover:text-[#dd0c7e]'}`}
-          >
-            {tab.label}
-          </Link>
-          {index < tabs.length - 1 && (
-            <span className="text-gray-400 text-xl px-2">|</span>
-          )}
-        </React.Fragment>
+    <div className="tabs-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px', fontSize: '24px', fontFamily: "'Cascadia Mono', monospace", color: 'white' }}> 
+      {tabs.map((tab) => (
+        <Link
+          to={tab.path}
+          key={tab.path}
+          className={`tab-link ${location.pathname === tab.path ? 'active' : ''}`}
+          style={{
+            padding: '20px 100px',
+            textDecoration: 'none',
+            color: location.pathname === tab.path ? '#dd0c7e' : 'white',
+            fontWeight: location.pathname === tab.path ? 'bold' : 'normal',
+            borderRadius: '4px',
+            transition: 'all 0.3s',
+            textAlign: 'center',
+            width: '100%', // Ensures it spans the available width in the vertical layout
+            marginTop: tab.label === 'Upload' ? '300px' : '0' // Adds margin-top only for the "Upload" tab
+          }}
+        >
+          {tab.label}
+        </Link>
       ))}
-    </nav>
+    </div>
   );
 };
 
