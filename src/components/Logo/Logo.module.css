@@ -1,0 +1,14 @@
+/* Remove duplicate classes first */
+
+.logoLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0; /* Remove all margins */
+  padding: 0; /* Remove any padding that might be causing the offset */
+}
+
+.logoLink:hover {
+  text-decoration: none;
+}

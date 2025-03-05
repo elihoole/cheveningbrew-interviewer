@@ -1,40 +1,40 @@
-/* Apply background color to the entire page */
-body {
-  height: 100vh;
-  min-height: 100%; /* Ensure full-screen height */
-  margin: 0;
-  background: linear-gradient(to bottom, #4B0082, #800080);  /* Updated gradient */
-}
-
-/* Style for the feedback container */
-.feedbackContainer {
-  background: #2B3147;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.feedbackContent {
   width: 100%;
-  max-width: 480px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Center the container */
-  max-height: 90vh; /* Limit the height for scrolling */
-  overflow-y: auto; /* Ensure scrolling if content overflows */
+  height: 100%;
+  color: white;
+  padding: 1rem; /* Reduced padding */
 }
 
-/* Content container that holds sections */
-.content {
-  flex: 1;
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: bold;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.feedbackSections {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-lg);
+  width: 100%; /* Ensure full width */
+  padding: 0 var(--spacing-md); /* Add consistent horizontal padding */
 }
 
-/* Box holding all feedback sections */
-.feedbackBox {
-  margin-top: 2rem;
+.feedbackSection {
+  width: 100%;
 }
 
-/* Style for the progress bar container */
+.feedbackSection h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.feedbackSection p {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .progressBar {
   width: 100%;
   height: 8px;
@@ -43,28 +43,19 @@ body {
   overflow: hidden;
 }
 
-/* Style for the actual progress inside the bar */
 .progress {
   height: 100%;
-  background: linear-gradient(to right, #dd0c7e, #a6208e);
+  background: linear-gradient(to right, #dd0c7e, #ca1582);
   border-radius: 4px;
-  transition: width 0.3s ease; /* Smooth transition for width change */
+  transition: width 0.3s ease;
 }
 
-/* Style for each feedback section */
-.feedbackSection {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 1.5rem;
-}
+@media screen and (max-width: 768px) {
+  .feedbackContent {
+    padding: 0.5rem;
+  }
 
-/* Remove the border from the last feedback section */
-.feedbackSection:last-child {
-  border-bottom: none;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 600px) {
-  .feedbackContainer {
-    padding: 1rem; /* Adjust padding for smaller screens */
+  .feedbackSections {
+    padding: 0;
   }
 }

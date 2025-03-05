@@ -1,81 +1,47 @@
 /* Style the main container */
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left side) */
   padding: 100px;
-  background: linear-gradient(to bottom, #4B0082, #800080);  /* Gradient background */
-  height: auto;
+  background: linear-gradient(to bottom, #4b0082, #800080);
+  min-height: 100vh;
   color: white;
-  font-family: 'Cascadia Mono', monospace;
 }
 
-/* LandingPage.module.css */
-
-/* Specific style for h1 on LandingPage */
-.landingPageH1 {
-  color: white;
-  font-size: 5rem;
-  margin-bottom: 20px;
-  font-family: 'Dancing Script', cursive, sans-serif;
-}
-
-/* Style the paragraph */
-p {
-  color: white;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  font-family: 'Cascadia Mono', monospace;
-}
-
-/* Timeline Container */
+/* Add a timeline container if it doesn't exist */
 .timeline-container {
   width: 100%;
-  padding: 40px;
-  font-family: Arial, sans-serif;
-  margin-top: 30px; /* Space between landing content and timeline */
   position: relative;
-}
-
-/* Title of the timeline */
-.timeline-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: left;  /* Align text to left */
-  position: absolute;
-  left: -372px;  /* Align with the timeline bullets */
-  top: 0;
+  margin: 30px 0;
 }
 
 /* The timeline itself */
 .timeline {
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
+  padding-left: 50px; /* Add some padding to ensure content alignment */
 }
 
 /* The vertical line that connects the events */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 8px; /* Position the line to align with bullet centers */
   top: 0;
   height: 100%;
   width: 2px;
   background-color: #ccc;
-  transform: translateX(-50%);
-  left: -8px; /* Position to the left of the event content */
 }
 
 /* Each event's container */
 .timeline-event {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 30px;
   position: relative;
-  width: 80%;
-  max-width: 900px;
-  margin-left: auto; /* Align events to the right */
 }
 
 /* The bullet point at each event */
@@ -85,35 +51,33 @@ p {
   background-color: white;
   border-radius: 50%;
   position: absolute;
-  left: -355px; /* Position to the left of the event content */
+  left: -50px; /* Position bullet to be centered on the line */
+  top: 32px; /* Align with title */
   z-index: 1;
+  transform: translateX(
+    0px
+  ); /* Center the bullet horizontally with respect to the line */
+  border: 2px solid #ccc; /* Optional: add a border */
 }
 
 /* The content of each event */
 .timeline-content {
-  max-width: 800px;
   padding-right: 30px;
-  
 }
 
 /* The title of each event */
 .timeline-event-title {
   font-size: 1.2rem;
-  font-weight: reguler;
+  font-weight: normal;
   padding-top: 30px;
   margin-bottom: 10px;
-  position: relative;  /* Ensures positioning within its parent */
-  left: -300px;  /* Adjust to align with the timeline */
-  font-family: 'Cascadia Mono', monospace;
 }
 
-/* Style the button only on the landing page */
+/* Style for the button to match logo alignment */
 .landingPageButton {
-  margin-left: 40px;
-  padding-top: 10px;
-  padding-right: 50px;
-  padding-left: 100px;
-  margin-top: -5px;
+  margin-left: 0; /* Remove the left margin to align with other elements */
+  padding: 10px 50px 10px 50px; /* Adjust padding for better appearance */
+  margin-top: 20px; /* Add some spacing between timeline and button */
   background-color: transparent;
   color: white;
   border: 2px solid white;
@@ -121,11 +85,77 @@ p {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: 'Cascadia Mono', monospace;
+  align-self: flex-start; /* Ensure button aligns with other elements */
 }
 
 /* Hover effect */
+/* Keep the hover effect */
 .landingPageButton:hover {
   background-color: white;
   color: #dd0c7e;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 2rem;
+    align-items: center;
+  }
+
+  .timeline-container {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timeline::before {
+    left: 4px;
+  }
+
+  .timeline-bullet {
+    width: 12px;
+    height: 12px;
+    left: -30px;
+    top: 28px;
+  }
+
+  .timeline-event-title {
+    font-size: 1rem;
+    padding-top: 24px;
+  }
+
+  .landingPageButton {
+    align-self: center;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .timeline-bullet {
+    left: -20px;
+  }
+
+  .timeline-content {
+    padding-right: 10px;
+  }
+
+  .timeline-event-title {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
 }

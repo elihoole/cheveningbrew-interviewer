@@ -1,0 +1,43 @@
+.actionBox {
+  width: 800px;
+  height: 600px;
+  margin: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-primary); /* Add this to ensure font inheritance */
+}
+
+.actionBox h1,
+.actionBox h2,
+.actionBox h3,
+.actionBox p,
+.actionBox button {
+  font-family: var(--font-primary); /* Explicitly set font for text elements */
+}
+
+/* Add a subtle gradient overlay */
+.actionBox::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-overlay);
+  pointer-events: none;
+}
+
+/* Ensure content stays above the gradient overlay */
+.actionBox > * {
+  position: relative;
+  z-index: 1;
+}

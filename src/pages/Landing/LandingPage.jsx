@@ -1,29 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./LandingPage.module.css";  // Import the CSS Module
+import styles from "./LandingPage.module.css"; // Import the CSS Module
+
+import Logo from "../../components/Logo/Logo";
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   const events = [
     {
-      title: "Boost your preparation – Upload your Chevening essays.",
+      title: "Upload your Chevening essay.",
     },
     {
-      title: "Mock interviews with top AI experts, closely mimicking the real Chevening interview.",
+      title:
+        "Mock with our voice AI intervier, closely simulating your final Chevening interview.",
     },
     {
-      title: "Get feedback and improve your chances of winning a Chevening Scholarship for 2025/2026.",
+      title:
+        "Get detailed feedback to radically  improve your chances of winning the Chevening Scholarship this year.",
     },
   ];
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.landingPageH1}>cheveningbrew.com</h1>
+      <Logo />
       <p>
-        Ace your Chevening interview by practicing with Amour Expert,
-        our AI-powered interview trainer. <br />
-        Powered by Chevening Alumni for aspiring Chevening scholars.
+        Ace your Chevening interview by mocking with our voice-enabled AI expert
+        interviewer. <br />
+        Built for aspiring Chevening scholars by Chevening alumni.
       </p>
       {/* Timeline Section */}
       <div className={styles["timeline-container"]}>
@@ -32,15 +36,22 @@ const LandingPage = () => {
             <div key={index} className={styles["timeline-event"]}>
               <div className={styles["timeline-bullet"]}></div>
               <div className={styles["timeline-content"]}>
-                <div className={styles["timeline-event-title"]}>{event.title}</div>
+                <div className={styles["timeline-event-title"]}>
+                  {event.title}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      
+
       {/* Start button using CSS Module class */}
-      <button className={styles.landingPageButton} onClick={() => navigate("/upload")}>Sign in with Google</button>
+      <button
+        className={styles.landingPageButton}
+        onClick={() => navigate("/upload")}
+      >
+        Sign in with Google
+      </button>
     </div>
   );
 };
