@@ -1,12 +1,18 @@
-/* Style the main container */
+/* Add a wrapper to contain both content and footer */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #4b0082, #800080);
+}
 
+/* Style the main container */
 .container {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align items to the start (left side) */
   padding: 100px;
-  background: linear-gradient(to bottom, #4b0082, #800080);
-  min-height: 100vh;
+  flex-grow: 1; /* Allow it to grow and push footer down */
   color: white;
 }
 
@@ -89,7 +95,6 @@
 }
 
 /* Hover effect */
-/* Keep the hover effect */
 .landingPageButton:hover {
   background-color: white;
   color: #dd0c7e;
@@ -103,8 +108,7 @@
     flex-direction: column; /* Ensures items stack vertically */
     align-items: flex-start; /* Aligns items to the left */
   }
-  
- 
+
   .timeline-container {
     width: 100%;
     margin: 20px 0;

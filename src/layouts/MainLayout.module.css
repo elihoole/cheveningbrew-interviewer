@@ -2,6 +2,7 @@
   background: linear-gradient(to bottom, #4b0082, #800080);
   min-height: 100vh;
   display: flex;
+  flex:1;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -54,3 +55,10 @@
     padding: 0.5rem;
   }
 }
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
