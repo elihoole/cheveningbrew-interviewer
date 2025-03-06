@@ -32,12 +32,12 @@
 
 .logoContainer {
   position: absolute;
-  /* Align with ActionBox vertically */
-  top: 2rem; /* Same as navigationContainer padding-top */
-  /* Align with navigationContainer horizontally */
-  right: calc(
-    250px + 4rem
-  ); /* navigationContainer width + mainLayout padding */
+  /* Align vertically with the ActionBox */
+  top: 12rem;
+  /* Position so that the right edge lines up with navigationContainer's right edge
+     (4rem + 250px from the left edge of mainLayout) */
+  left: calc(25rem + 250px);
+  transform: translateX(-100%);
   z-index: 100;
   width: max-content;
 }
@@ -65,6 +65,7 @@
     top: 40px;
     left: 50%;
     transform: translateX(-50%);
+    right: auto;
     width: max-content;
     z-index: 100;
     margin-bottom: 30px;
