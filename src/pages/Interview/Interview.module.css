@@ -86,3 +86,21 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
+.logoContainer {
+  position: absolute;
+  top: 60px;  
+  left: 145px; 
+  z-index: 100; 
+}
+
+@media screen and (max-width: 768px) {
+  .logoContainer {
+    position: absolute; 
+    top: 40px; 
+    left: 48%; 
+    transform: translateX(-50%); 
+    width: max-content; 
+    z-index: 100; 
+    margin-bottom: 30px;
+  }
+}

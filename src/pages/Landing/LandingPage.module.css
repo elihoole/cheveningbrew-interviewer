@@ -99,9 +99,12 @@
 @media screen and (max-width: 768px) {
   .container {
     padding: 2rem;
-    align-items: center;
+    display: flex; /* Use flexbox to control alignment */
+    flex-direction: column; /* Ensures items stack vertically */
+    align-items: flex-start; /* Aligns items to the left */
   }
-
+  
+ 
   .timeline-container {
     width: 100%;
     margin: 20px 0;
@@ -128,7 +131,7 @@
   }
 
   .landingPageButton {
-    align-self: center;
+    align-self: flex-start;
     width: 100%;
     max-width: 300px;
     text-align: center;

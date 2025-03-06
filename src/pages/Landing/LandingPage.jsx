@@ -23,7 +23,8 @@ const LandingPage = () => {
 
   return (
     <div className={styles.container}>
-      <Logo />
+      <div className={styles.logoContainer}>  <Logo /> </div>
+     
       <p>
         Ace your Chevening interview by mocking with our voice-enabled AI expert
         interviewer. <br />
