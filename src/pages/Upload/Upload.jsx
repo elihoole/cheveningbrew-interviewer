@@ -21,14 +21,12 @@ const Upload = () => {
   return (
     <MainLayout>
       {/* Logo positioned at the top-left corner */}
-      <div className={styles.logoContainer}>
-        <Logo />
-      </div>
 
       <ActionBox>
         <div className={styles.uploadContainer}>
           <h1 className={styles.title}>
-            Download your Chevening Application as a PDF file and upload it here.
+            Download your Chevening Application as a PDF file and upload it
+            here.
           </h1>
           <input
             type="file"

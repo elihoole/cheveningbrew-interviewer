@@ -2,12 +2,13 @@
   background: linear-gradient(to bottom, #4b0082, #800080);
   min-height: 100vh;
   display: flex;
-  flex:1;
+  flex: 1;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0 4rem;
   gap: 4rem;
+  position: relative;
 }
 
 .navigationContainer {
@@ -29,6 +30,17 @@
   padding: 2rem 0;
 }
 
+.logoContainer {
+  position: absolute;
+  /* Align with ActionBox vertically */
+  top: 2rem; /* Same as navigationContainer padding-top */
+  /* Align with navigationContainer horizontally */
+  right: calc(
+    250px + 4rem
+  ); /* navigationContainer width + mainLayout padding */
+  z-index: 100;
+  width: max-content;
+}
 /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
   .mainLayout {
@@ -47,6 +59,16 @@
     width: 100%;
     padding: 0;
   }
+
+  .logoContainer {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 100;
+    margin-bottom: 30px;
+  }
 }
 
 /* Additional media query for very small screens */
@@ -61,4 +83,3 @@
   flex-direction: column;
   min-height: 100vh;
 }
-

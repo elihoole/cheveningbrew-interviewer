@@ -4,7 +4,6 @@ import ActionBox from "../../components/ActionBox/ActionBox";
 import styles from "./Interview.module.css";
 import Logo from "../../components/Logo/Logo"; // Ensure correct import path
 
-
 const Interview = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState("20:00");
@@ -12,9 +11,7 @@ const Interview = () => {
   return (
     <MainLayout>
       {/* Logo positioned at the top-left corner */}
-      <div className={styles.logoContainer}>
-        <Logo />
-      </div>
+
       <ActionBox>
         <div className={styles.interviewContent}>
           <div className={styles.progressDots}>
