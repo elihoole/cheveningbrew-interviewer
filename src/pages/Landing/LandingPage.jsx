@@ -13,11 +13,11 @@ const LandingPage = () => {
     },
     {
       title:
-        "Mock with our voice AI intervier, closely simulating your final Chevening interview.",
+        "Mock with our voice AI interviewerr, closely simulating your final Chevening interview.",
     },
     {
       title:
-        "Get detailed feedback to radically  improve your chances of winning the Chevening Scholarship this year.",
+        "Get detailed, Chevening evaluation aligned feedback that radically improves your chances of winning the Chevening Scholarship this year.",
     },
   ];
 
