@@ -1,14 +1,21 @@
-.mainLayout {
-  background: linear-gradient(to bottom, #4b0082, #800080);
-  min-height: 100vh;
+.pageContainer {
+  height: 100vh;
   display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0 4rem;
-  gap: 4rem;
-  position: relative;
+  flex-direction: column;
+  overflow: hidden; /* Prevent scrolling */
+  .mainLayout {
+    background: linear-gradient(to bottom, #4b0082, #800080);
+    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow-y: auto; /* Allow scrolling within this container if needed */
+  }
 }
 
 .navigationContainer {
@@ -19,14 +26,16 @@
   align-items: flex-end;
   height: auto;
   padding: 2rem 0;
-}
-
-.contentContainer {
-  flex: 1;
-  max-width: 800px;
-  display: flex;
-  justify-content: center;
-  height: auto;
+  .contentContainer {
+    flex: 1;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    padding: 2rem 0;
+    overflow-y: auto; /* Allow content to scroll if needed */
+    max-height: 100%;
+  }
   padding: 2rem 0;
 }
 
@@ -77,10 +86,4 @@
   .mainLayout {
     padding: 0.5rem;
   }
-}
-
-.pageContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
