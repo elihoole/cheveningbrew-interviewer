@@ -3,10 +3,19 @@
 .logoLink {
   text-decoration: none;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
   margin: 0; /* Remove all margins */
   padding: 0; /* Remove any padding that might be causing the offset */
+}
+
+.logoLink h1{
+  font-size: 4rem !important;
+}
+
+.logoLink img{
+  width: 100%;
+  max-width: 300px;
 }
 
 .logoLink:hover {

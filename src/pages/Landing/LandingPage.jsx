@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
-import Footer from "../../components/Footer/Footer";
+import g from "../../assets/images/G.webp"
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -12,25 +13,24 @@ const LandingPage = () => {
       title: "Upload your Chevening essay.",
     },
     {
-      title: "Mock with our voice AI interviewer, closely simulating your final Chevening interview.",
+      title:
+        "Mock with our voice AI interviewerr, closely simulating your final Chevening interview.",
     },
     {
-      title: "Get detailed feedback to radically improve your chances of winning the Chevening Scholarship this year.",
-    },
+      title:
+        "Get detailed, Chevening evaluation aligned feedback that radically improves your chances of winning the Chevening Scholarship this year.",
+
   ];
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.container}>
-        <div className={styles.logoContainer}>
-          <Logo />
-        </div>
-
-        <p>
-          Ace your Chevening interview by mocking with our voice-enabled AI expert
-          interviewer. <br />
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <Logo />
+        <div className={styles.description}>
+          <b>Ace your Chevening interview by mocking with our voice-enabled AI
+          expert interviewer. </b>
           Built for aspiring Chevening scholars by Chevening alumni.
-        </p>
+        </div>
 
         {/* Timeline Section */}
         <div className={styles["timeline-container"]}>
@@ -53,12 +53,12 @@ const LandingPage = () => {
           className={styles.landingPageButton}
           onClick={() => navigate("/upload")}
         >
-          Sign in with Google
+          <img src={g} alt="logo" width="30" /> Sign in with Google
         </button>
       </div>
-      
-      {/* Footer Section */}
-      <Footer />
+      <div className={styles["image-container"]}>
+      </div>
+
     </div>
   );
 };

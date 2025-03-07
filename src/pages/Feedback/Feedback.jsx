@@ -11,8 +11,7 @@ const Feedback = () => {
 
       <ActionBox>
         <div className={styles.feedbackContent}>
-          <h1 className={styles.title}>Interview Feedback</h1>
-
+          <h1 className={styles.title}>Performance feedback</h1>
           <div className={styles.feedbackSections}>
             <div className={styles.feedbackSection}>
               <h2>Content Analysis</h2>
