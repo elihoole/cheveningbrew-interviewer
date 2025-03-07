@@ -1,11 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
-import Footer from "../../components/Footer/Footer";
+
+import { useGoogleLogin } from "@react-oauth/google"; 
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  const login = useGoogleLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse); 
+      navigate("/upload"); 
+    },
+    onError: () => console.log("Login Failed"),
+  });
 
   const events = [
     {
@@ -51,14 +60,13 @@ const LandingPage = () => {
         {/* Start button using CSS Module class */}
         <button
           className={styles.landingPageButton}
-          onClick={() => navigate("/upload")}
+          onClick={() => login()}  // Trigger Google login directly
         >
           Sign in with Google
         </button>
       </div>
       
-      {/* Footer Section */}
-      <Footer />
+      
     </div>
   );
 };

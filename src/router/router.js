@@ -3,7 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Interview from "../pages/Interview/Interview";
 import Upload from "../pages/Upload/Upload";
 import Feedback from "../pages/Feedback/Feedback";
-import LandingPage from "../pages/Landing/LandingPage"; // Check this import path
+import LandingPage from "../pages/Landing/LandingPage"; // Ensure this is the correct import
+import LoginSignup from "../components/LoginSignup/LoginSignup";  // If you're using LoginSignup separately
 import Help from "../pages/SupportPages/Help/Help";
 import About from "../pages/SupportPages/About/About";
 import Pricing from "../pages/SupportPages/Pricing/Pricing";
@@ -12,12 +13,12 @@ import Terms from "../pages/SupportPages/Terms/Terms";
 
 export const router = createBrowserRouter([
   {
-    path: "/", // Default landing page
-    element: <LandingPage />,
+    path: "/",
+    element: <LandingPage />, // Ensure LandingPage is rendered on the root path
   },
   {
-    path: "/interview",
-    element: <Interview />,
+    path: "/login-signup",
+    element: <LoginSignup />, // If you have a separate login page
   },
   {
     path: "/upload",
@@ -28,23 +29,8 @@ export const router = createBrowserRouter([
     element: <Feedback />,
   },
   {
-    path: "/help",
-    element: <Help />,
+    path: "/interview",
+    element: <Interview />,
   },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/pricing",
-    element: <Pricing />,
-  },
-  {
-    path: "/privacy",
-    element: <Privacy />,
-  },
-  {
-    path: "/terms",
-    element: <Terms />,
-  },
+  // Add other routes as needed
 ]);
