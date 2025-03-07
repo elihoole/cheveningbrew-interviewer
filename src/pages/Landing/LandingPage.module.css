@@ -117,56 +117,55 @@
     padding: 80px 50px;
     align-items: center;
 
-  .timeline-container {
-    width: 100%;
+    .timeline-container {
+      width: 100%;
+    }
+
+    .timeline {
+      padding-left: 30px;
+    }
+
+    .timeline-content {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .timeline::before {
+      left: 4px;
+    }
+
+    .timeline-event-title {
+      font-size: 1.3rem;
+    }
+    .landingPageButton {
+      align-self: center;
+      text-align: center;
+      font-size: 1.2rem;
+    }
   }
 
-  .timeline {
-    padding-left: 30px;
-  }
+  /* For very small screens */
+  @media screen and (max-width: 480px) {
+    .content {
+      padding: 50px 20px;
+    }
 
-  .timeline-content {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
+    .timeline {
+      padding-left: 20px;
+    }
 
-  .timeline::before {
-    left: 4px;
-  }
+    .timeline-content {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      line-height: 1.5rem;
+    }
 
-  .timeline-event-title {
-    font-size: 1.3rem;
-  }
+    .timeline-event-title {
+      font-size: 1.2rem;
+    }
 
-  .landingPageButton {
-    align-self: center;
-    text-align: center;
-    font-size: 1.2rem;
+    .landingPageButton {
+      font-size: 1rem;
+    }
   }
-}
-
-/* For very small screens */
-@media screen and (max-width: 480px) {
-  .content {
-    padding: 50px 20px;
-  }
-
-  .timeline {
-    padding-left: 20px;
-  }
-
-  .timeline-content {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    line-height: 1.5rem;
-  }
-
-  .timeline-event-title {
-    font-size: 1.2rem;
-  }
-
-  .landingPageButton {
-    font-size: 1rem;
-  }
-
 }

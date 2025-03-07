@@ -2,8 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
-import g from "../../assets/images/G.webp"
-
+import g from "../../assets/images/G.webp";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const LandingPage = () => {
     {
       title:
         "Get detailed, Chevening evaluation aligned feedback that radically improves your chances of winning the Chevening Scholarship this year.",
-
+    },
   ];
 
   return (
@@ -27,8 +26,10 @@ const LandingPage = () => {
       <div className={styles.content}>
         <Logo />
         <div className={styles.description}>
-          <b>Ace your Chevening interview by mocking with our voice-enabled AI
-          expert interviewer. </b>
+          <b>
+            Ace your Chevening interview by mocking with our voice-enabled AI
+            expert interviewer.{" "}
+          </b>
           Built for aspiring Chevening scholars by Chevening alumni.
         </div>
 
@@ -56,9 +57,7 @@ const LandingPage = () => {
           <img src={g} alt="logo" width="30" /> Sign in with Google
         </button>
       </div>
-      <div className={styles["image-container"]}>
-      </div>
-
+      <div className={styles["image-container"]}></div>
     </div>
   );
 };
