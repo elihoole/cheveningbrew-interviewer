@@ -1,5 +1,12 @@
-/* Style the main container */
+/* Add a wrapper to contain both content and footer */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #4b0082, #800080);
+}
 
+/* Style the main container */
 .container {
   background-image: url("../../assets/images/back.webp");
   background-size: cover;
@@ -15,6 +22,7 @@
   padding: 100px;
   background: linear-gradient(to right, #4b0082, #800080b5, #80008066);
   min-height: 100vh;
+
   color: white;
 }
 
@@ -98,7 +106,6 @@
 }
 
 /* Hover effect */
-/* Keep the hover effect */
 .landingPageButton:hover {
   background-color: white;
   color: #dd0c7e;
@@ -109,7 +116,6 @@
   .content {
     padding: 80px 50px;
     align-items: center;
-  }
 
   .timeline-container {
     width: 100%;
@@ -162,4 +168,5 @@
   .landingPageButton {
     font-size: 1rem;
   }
+
 }

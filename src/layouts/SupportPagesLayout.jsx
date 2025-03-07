@@ -1,16 +1,14 @@
 import React from "react";
-import Tabs from "../components/Header/Tabs/Tabs";
 import Footer from "../components/Footer/Footer";
 import Logo from "../components/Logo/Logo";
 import styles from "./layout.module.css";
 
-const MainLayout = ({ children }) => {
+const SupportPagesLayout = ({ children }) => {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.mainLayout}>
         <div className={styles.navigationContainer}>
           <Logo />
-          <Tabs />
         </div>
         <div className={styles.contentContainer}>{children}</div>
       </div>
@@ -19,4 +17,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default SupportPagesLayout;

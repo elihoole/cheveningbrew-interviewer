@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import styles from "./Upload.module.css";
+import Logo from "../../components/Logo/Logo"; // Ensure correct import path
 
 const Upload = () => {
   const fileInputRef = useRef(null);
@@ -19,6 +20,8 @@ const Upload = () => {
 
   return (
     <MainLayout>
+      {/* Logo positioned at the top-left corner */}
+
       <ActionBox>
         <div className={styles.uploadContainer}>
           <h1 className={styles.title}>

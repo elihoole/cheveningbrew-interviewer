@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./LandingPage.module.css"; // Import the CSS Module
-
+import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
 import g from "../../assets/images/G.webp"
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const LandingPage = () => {
     {
       title:
         "Get detailed, Chevening evaluation aligned feedback that radically improves your chances of winning the Chevening Scholarship this year.",
-    },
+
   ];
 
   return (
@@ -31,6 +31,7 @@ const LandingPage = () => {
           expert interviewer. </b>
           Built for aspiring Chevening scholars by Chevening alumni.
         </div>
+
         {/* Timeline Section */}
         <div className={styles["timeline-container"]}>
           <div className={styles.timeline}>
@@ -57,6 +58,7 @@ const LandingPage = () => {
       </div>
       <div className={styles["image-container"]}>
       </div>
+
     </div>
   );
 };

@@ -2,10 +2,13 @@ import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import styles from "./Feedback.module.css";
+import Logo from "../../components/Logo/Logo";
 
 const Feedback = () => {
   return (
     <MainLayout>
+      {/* Logo positioned at the top-left corner */}
+
       <ActionBox>
         <div className={styles.feedbackContent}>
           <h1 className={styles.title}>Performance feedback</h1>

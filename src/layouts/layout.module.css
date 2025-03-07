@@ -1,0 +1,119 @@
+.pageContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.mainLayout {
+  background: linear-gradient(to bottom, #4b0082, #800080);
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4rem;
+  gap: 4rem;
+  position: relative;
+  overflow-y: hidden; /* Prevent vertical scrolling on desktop */
+}
+
+.navigationContainer {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: auto;
+  padding: 2rem 0;
+}
+
+.contentContainer {
+  flex: 1;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 2rem 0;
+  overflow-y: auto; /* Allow content to scroll if needed */
+  max-height: 100%;
+}
+
+.logoContainer {
+  position: absolute;
+  /* Align vertically with the ActionBox */
+  top: 12rem;
+  /* Position so that the right edge lines up with navigationContainer's right edge */
+  left: calc(25rem + 250px);
+  transform: translateX(-100%);
+  z-index: 100;
+  width: max-content;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .pageContainer {
+    overflow-y: auto; /* Enable scrolling on mobile */
+    height: auto; /* Allow the page to extend beyond viewport */
+    min-height: 100vh; /* Ensure it's at least the height of the viewport */
+  }
+
+  .mainLayout {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    overflow-y: visible; /* Allow content to flow normally */
+    height: auto; /* Allow the layout to extend as needed */
+  }
+
+  .navigationContainer {
+    width: 100%;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .contentContainer {
+    width: 100%;
+    padding: 0;
+    max-height: none; /* Remove height constraint */
+    overflow-y: visible; /* Let content flow normally */
+  }
+
+  .logoContainer {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    width: max-content;
+    z-index: 100;
+    margin-bottom: 30px;
+  }
+}
+
+/* Additional media query for very small screens */
+@media screen and (max-width: 768px) {
+  .pageContainer {
+    overflow-y: auto; /* Enable scrolling on mobile */
+    height: auto; /* Allow the page to extend beyond viewport */
+    min-height: 100vh; /* Ensure it's at least the height of the viewport */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .pageContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mainLayout {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    overflow-y: visible; /* Allow content to flow normally */
+    height: auto; /* Allow the layout to extend as needed */
+  }
+
+  /* Rest of your existing mobile styles */
+}
