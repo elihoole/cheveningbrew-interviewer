@@ -36,7 +36,7 @@
   justify-content: center;
   height: auto;
   padding: 2rem 0;
-  overflow-y: auto; /* Allow content to scroll if needed */
+  overflow-y: hidden;
   max-height: 100%;
 }
 

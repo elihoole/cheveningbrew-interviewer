@@ -3,7 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Interview from "../pages/Interview/Interview";
 import Upload from "../pages/Upload/Upload";
 import Feedback from "../pages/Feedback/Feedback";
-import LandingPage from "../pages/Landing/LandingPage"; // Check this import path
+import LandingPage from "../pages/Landing/LandingPage"; 
+import LoginSignup from "../components/LoginSignup/LoginSignup";  
 import Help from "../pages/SupportPages/Help/Help";
 import About from "../pages/SupportPages/About/About";
 import Pricing from "../pages/SupportPages/Pricing/Pricing";
@@ -12,12 +13,12 @@ import Terms from "../pages/SupportPages/Terms/Terms";
 
 export const router = createBrowserRouter([
   {
-    path: "/", // Default landing page
-    element: <LandingPage />,
+    path: "/",
+    element: <LandingPage />, 
   },
   {
-    path: "/interview",
-    element: <Interview />,
+    path: "/login-signup",
+    element: <LoginSignup />, 
   },
   {
     path: "/upload",
@@ -28,23 +29,25 @@ export const router = createBrowserRouter([
     element: <Feedback />,
   },
   {
+    path: "/interview",
+    element: <Interview />,
+  },
+  {
     path: "/help",
     element: <Help />,
   },
-  {
-    path: "/about",
-    element: <About />,
-  },
+
+  { path: "/about", 
+    element: <About />,},
   {
     path: "/pricing",
     element: <Pricing />,
+
   },
-  {
-    path: "/privacy",
+  { path: "/privacy",
     element: <Privacy />,
   },
-  {
-    path: "/terms",
+  {  path: "/terms",
     element: <Terms />,
   },
 ]);
