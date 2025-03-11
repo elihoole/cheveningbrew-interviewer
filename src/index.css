@@ -311,3 +311,10 @@ textarea:focus {
   margin: 0 auto;
   padding: 20px;
 }
+.copyright p {
+  color: var(--neutral-100);
+  opacity: 0.8;
+  text-align: center;
+  
+}
+

@@ -1,43 +1,31 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
+import Uploader from "../../components/Uploader/Uploader";
 import styles from "./Upload.module.css";
-import Logo from "../../components/Logo/Logo"; // Ensure correct import path
+import { useNavigate } from "react-router-dom";
 
 const Upload = () => {
-  const fileInputRef = useRef(null);
+  const [filePath, setFilePath] = useState(null);
+  const navigate = useNavigate();
 
-  const handleBrowseClick = () => {
-    fileInputRef.current.click();
-  };
+  const handleUploadSuccess = (path) => {
+    setFilePath(filePath);
+    console.log("File path:", filePath);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log("Selected file:", file.name);
-    }
+    // Navigate to Interview page
+    navigate("/interview");
   };
 
   return (
     <MainLayout>
-      {/* Logo positioned at the top-left corner */}
-
       <ActionBox>
         <div className={styles.uploadContainer}>
           <h1 className={styles.title}>
             Download your Chevening Application as a PDF file and upload it
             here.
           </h1>
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".pdf"
-            className={styles.hiddenInput}
-          />
-          <button className={styles.browseButton} onClick={handleBrowseClick}>
-            Browse file
-          </button>
+          <Uploader onUploadSuccess={handleUploadSuccess} />
         </div>
       </ActionBox>
     </MainLayout>
