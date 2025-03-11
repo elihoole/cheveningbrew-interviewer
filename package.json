@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@livekit/components-react": "^2.7.0",
+    "@livekit/components-styles": "^1.1.4",
+    "@livekit/krisp-noise-filter": "^0.2.14",
     "@react-oauth/google": "^0.12.1",
     "@react-pdf/renderer": "^4.2.2",
     "@testing-library/dom": "^10.4.0",
@@ -10,6 +13,9 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "ajv": "^8.17.1",
+    "framer-motion": "^11.18.0",
+    "livekit-client": "^2.8.0",
+    "livekit-server-sdk": "^2.9.7",
     "pdf-parse": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -43,9 +49,10 @@
     ]
   },
   "devDependencies": {
-    "@vite-pwa/assets-generator": "^0.2.6",
-    "autoprefixer": "^10.4.20",
+    "@tailwindcss/postcss": "^4.0.12",
+    "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.9"
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^4.0.12"
   }
 }
