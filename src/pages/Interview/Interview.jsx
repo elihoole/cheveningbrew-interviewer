@@ -27,7 +27,7 @@ function Page() {
     try {
       // Fetch connection details from the backend API
       const response = await axios.get(
-        "https://www.livekit.cheveningbrew.com/api/connection-details"
+        "https://www.livekit.cheveningbrew.com/token_service"
       ); // Make GET request to your endpoint
       updateConnectionDetails(response.data); // Update the connection details with the API response
     } catch (error) {
