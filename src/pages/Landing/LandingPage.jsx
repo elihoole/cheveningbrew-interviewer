@@ -1,19 +1,41 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
 import g from "../../assets/images/G.webp";
-import { useGoogleLogin } from "@react-oauth/google"; 
+import { useGoogleLogin } from "@react-oauth/google";
+import googleOAuthService from "../../services/google_oauth";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = useGoogleLogin({
-    onSuccess: (credentialResponse) => {
-      console.log(credentialResponse); 
-      navigate("/upload"); 
+    onSuccess: async (credentialResponse) => {
+      try {
+        setIsLoading(true);
+        // Send the token to your backend to validate and create a session
+        const response = await googleOAuthService.authenticate(
+          credentialResponse.access_token
+        );
+
+        // Store user data or token in localStorage if needed
+        localStorage.setItem("user", JSON.stringify(response.user));
+        localStorage.setItem("token", response.token);
+
+        // Navigate to upload page after successful authentication
+        navigate("/upload");
+      } catch (error) {
+        console.error("Authentication failed:", error);
+        // Handle login failure - you might want to show an error message to the user
+      } finally {
+        setIsLoading(false);
+      }
     },
-    onError: () => console.log("Login Failed"),
+    onError: () => {
+      console.log("Login Failed");
+      setIsLoading(false);
+    },
   });
 
   const events = [
@@ -22,7 +44,7 @@ const LandingPage = () => {
     },
     {
       title:
-        "Mock with our voice AI interviewerr, closely simulating your final Chevening interview.",
+        "Mock with our voice AI interviewer, closely simulating your final Chevening interview.",
     },
     {
       title:
@@ -60,15 +82,22 @@ const LandingPage = () => {
 
         {/* Start button using CSS Module class */}
         <button
-          className={styles.landingPageButton}
-          onClick={() => login()}  // Trigger Google login directly
+          className={`${styles.landingPageButton} ${
+            isLoading ? styles.loading : ""
+          }`}
+          onClick={() => login()}
+          disabled={isLoading}
         >
-          <img src={g} alt="logo" width="30" /> Sign in with Google
+          {isLoading ? (
+            "Signing in..."
+          ) : (
+            <>
+              <img src={g} alt="logo" width="30" /> Sign in with Google
+            </>
+          )}
         </button>
       </div>
       <div className={styles["image-container"]}></div>
-      
-      
     </div>
   );
 };

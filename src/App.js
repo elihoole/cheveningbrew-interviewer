@@ -12,8 +12,12 @@ import Privacy from "./pages/SupportPages/Privacy/Privacy";
 import Terms from "./pages/SupportPages/Terms/Terms";
 
 function App() {
+  console.log("Client ID:", process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID);
+
   return (
-    <GoogleOAuthProvider clientId="604376306081-u6ojtrf8evjilup6blg2hh5t6mt4bbei.apps.googleusercontent.com">
+    <GoogleOAuthProvider
+      clientId={process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
