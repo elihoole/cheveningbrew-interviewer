@@ -5,39 +5,35 @@ import Logo from "../../components/Logo/Logo";
 import Footer from "../../components/Footer/Footer";
 import g from "../../assets/images/G.webp";
 import { useGoogleLogin } from "@react-oauth/google";
-import googleOAuthService from "../../services/google_oauth";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const login = useGoogleLogin({
-    onSuccess: async (credentialResponse) => {
-      try {
-        setIsLoading(true);
-        // Send the token to your backend to validate and create a session
-        const response = await googleOAuthService.authenticate(
-          credentialResponse.access_token
-        );
+    onSuccess: (tokenResponse) => {
+      // Handle successful login
+      console.log(tokenResponse);
+      setIsLoading(true);
+      // Process the token response here
+      // You can call your backend with this token
 
-        // Store user data or token in localStorage if needed
-        localStorage.setItem("user", JSON.stringify(response.user));
-        localStorage.setItem("token", response.token);
-
-        // Navigate to upload page after successful authentication
-        navigate("/upload");
-      } catch (error) {
-        console.error("Authentication failed:", error);
-        // Handle login failure - you might want to show an error message to the user
-      } finally {
-        setIsLoading(false);
-      }
+      // Navigate to upload page on successful authentication
+      navigate('/upload');
     },
-    onError: () => {
-      console.log("Login Failed");
+    onError: (errorResponse) => {
+      // Handle error
+      console.error('Google Login Failed:', errorResponse);
       setIsLoading(false);
     },
+    flow: 'implicit' // or 'auth-code' depending on your backend
   });
+
+  // Then in your onClick handler, replace the current implementation with:
+  const handleGoogleSignIn = () => {
+    setIsLoading(true);
+    login();
+  };
 
   const events = [
     {
@@ -86,8 +82,7 @@ const LandingPage = () => {
           className={`${styles.landingPageButton} ${
             isLoading ? styles.loading : ""
           }`}
-          onClick={() => login()}
-          disabled={isLoading}
+          onClick={handleGoogleSignIn}
         >
           {isLoading ? (
             "Signing in..."
