@@ -1,18 +1,21 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
-import styles from "./Privacy.module.css";
+import styles from "../SupportPages.module.css";
+import privacyPolicyText from "./PrivacyStatement";
 
 const Privacy = () => {
-  const privacyPolicyText =
-    "This is a placeholder for the privacy policy text. Replace this with your actual privacy policy content.";
-
   return (
     <SupportPagesLayout>
       <ActionBox>
         <div className={styles.privacyContent}>
-          <h1 className={styles.title}>Privacy Policy</h1>
-          <p className={styles.description}>{privacyPolicyText}</p>
+          <div>
+            <h1 className={styles.pageTitle}>Privacy Policy</h1>
+          </div>
+          <div className={styles.description}>
+            <ReactMarkdown>{privacyPolicyText}</ReactMarkdown>
+          </div>
         </div>
       </ActionBox>
     </SupportPagesLayout>

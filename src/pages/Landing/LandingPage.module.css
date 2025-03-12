@@ -111,6 +111,23 @@
   color: #dd0c7e;
 }
 
+/* Footer styling */
+.footerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 4rem;
+  background: linear-gradient(
+    to right,
+    rgba(75, 0, 130, 0.9),
+    rgba(128, 0, 128, 0.8)
+  );
+}
+
+.landingPageFooter {
+  color: #ffffff;
+}
+
 /* Media queries for responsive design */
 @media screen and (max-width: 768px) {
   .content {
@@ -141,6 +158,10 @@
       align-self: center;
       text-align: center;
       font-size: 1.2rem;
+    }
+    .footerContainer {
+      padding-left: 1rem;
+      justify-content: center;
     }
   }
 

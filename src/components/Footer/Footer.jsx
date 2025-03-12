@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-const Footer = () => {
+const Footer = ({ className }) => {
   return (
-    <footer className="glass mt-auto py-6">
+    <footer className={`styles.footer ${className} || ""`}>
       <div className="container flex flex-col md:flex-row justify-between items-center md:items-center relative">
         {/* Links aligned to the left */}
         <div className="footer-links flex flex-wrap justify-center gap-4 md:gap-6">

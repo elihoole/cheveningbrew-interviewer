@@ -1,7 +1,9 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
-import styles from "./Terms.module.css";
+import termsPolicyText from "./TermsStatement";
+import styles from "../SupportPages.module.css";
 
 const Terms = () => {
   const termsText =
@@ -11,8 +13,10 @@ const Terms = () => {
     <SupportPagesLayout>
       <ActionBox>
         <div className={styles.privacyContent}>
-          <h1 className={styles.title}>Terms</h1>
-          <p className={styles.description}>{termsText}</p>
+          <h1 className={styles.pageTitle}>Terms</h1>
+          <div className={styles.description}>
+            <ReactMarkdown>{termsPolicyText}</ReactMarkdown>
+          </div>
         </div>
       </ActionBox>
     </SupportPagesLayout>
