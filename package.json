@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@livekit/components-react": "^2.7.0",
+    "@livekit/components-react": "^2.8.1",
     "@livekit/components-styles": "^1.1.4",
     "@livekit/krisp-noise-filter": "^0.2.14",
     "@react-oauth/google": "^0.12.1",
@@ -15,7 +15,7 @@
     "ajv": "^8.17.1",
     "axios": "^1.8.2",
     "framer-motion": "^11.18.0",
-    "livekit-client": "^2.8.0",
+    "livekit-client": "^2.9.5",
     "livekit-server-sdk": "^2.9.7",
     "pdf-parse": "^1.1.1",
     "react": "^18.2.0",
