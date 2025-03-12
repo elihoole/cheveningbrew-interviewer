@@ -1,7 +1,7 @@
 import React from "react";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
-import styles from "./About.module.css";
+import styles from "../SupportPages.module.css";
 
 const About = () => {
   return (

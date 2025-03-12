@@ -1,0 +1,39 @@
+.aboutContent {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: light;
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: light;
+  margin-bottom: 1rem;
+}
+
+/* Common styles for lists if needed */
+.list {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Section spacing */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+/* Subsection headings if needed */
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: light;
+  margin: 2rem 0 1rem;
+}

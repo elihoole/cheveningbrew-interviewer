@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
+import Footer from "../../components/Footer/Footer";
 import g from "../../assets/images/G.webp";
 import { useGoogleLogin } from "@react-oauth/google";
 import googleOAuthService from "../../services/google_oauth";
@@ -98,6 +99,7 @@ const LandingPage = () => {
         </button>
       </div>
       <div className={styles["image-container"]}></div>
+      <Footer />
     </div>
   );
 };

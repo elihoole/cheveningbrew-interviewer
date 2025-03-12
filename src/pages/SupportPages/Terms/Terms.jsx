@@ -1,7 +1,7 @@
 import React from "react";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
-import styles from "./Terms.module.css";
+import styles from "../SupportPages.module.css";
 
 const Terms = () => {
   const termsText =
