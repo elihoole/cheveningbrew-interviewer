@@ -1,67 +1,142 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
-import styles from "./Interview.module.css";
-import Logo from "../../components/Logo/Logo"; // Ensure correct import path
+import axios from "axios";
+import { NoAgentNotification } from "../../components/NoAgentNotification";
+import { CloseIcon } from "../../components/CloseIcon";
+import {
+  AgentState,
+  BarVisualizer,
+  DisconnectButton,
+  LiveKitRoom,
+  RoomAudioRenderer,
+  VoiceAssistantControlBar,
+  useVoiceAssistant,
+} from "@livekit/components-react";
+import "@livekit/components-styles";
+import { useKrispNoiseFilter } from "@livekit/components-react/krisp";
+import { AnimatePresence, motion } from "framer-motion";
+import { MediaDeviceFailure } from "livekit-client";
 
-const Interview = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [timeRemaining] = useState("20:00");
+// Main Page component
+function Page() {
+  const [connectionDetails, updateConnectionDetails] = useState(null);
+  const [agentState, setAgentState] = useState("disconnected");
 
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleStop = () => {
-    setIsPlaying(false);
-    // Add stop logic here
-  };
+  const onConnectButtonClicked = useCallback(async () => {
+    try {
+      // Fetch connection details from the backend API
+      const response = await axios.get(
+        "https://www.livekit.cheveningbrew.com/token_service"
+      ); // Make GET request to your endpoint
+      updateConnectionDetails(response.data); // Update the connection details with the API response
+    } catch (error) {
+      console.error("Error fetching connection details", error);
+      alert("Failed to fetch connection details");
+    }
+  }, []);
 
   return (
     <MainLayout>
       {/* Logo positioned at the top-left corner */}
 
       <ActionBox>
-        <div className={styles.interviewContent}>
-          <div className={styles.header}>
-            <div className={styles.progressDots}>
-              <div className={`${styles.dot} ${styles.active}`}></div>
-              <div className={styles.dot}></div>
-              <div className={styles.dot}></div>
-            </div>
-            <div className={styles.tipsButton}>
-              <span className={styles.tipsIcon}>💡</span>
-              <span className={styles.tipsText}>TIPS</span>
-            </div>
-          </div>
-
-          <div className={styles.mainContent}>
-            <div className={styles.timerSection}>
-              <div className={styles.timerDisplay}>
-                <div className={styles.time}>{timeRemaining}</div>
-                <div className={styles.timeLabel}>Time Remaining</div>
-              </div>
-            </div>
-
-            <div className={styles.controlsContainer}>
-              <button
-                className={`${styles.controlButton} ${styles.playPauseButton}`}
-                onClick={handlePlayPause}
-              >
-                {isPlaying ? "⏸️" : "▶️"}
-              </button>
-              <button
-                className={`${styles.controlButton} ${styles.stopButton}`}
-                onClick={handleStop}
-              >
-                ⏹️
-              </button>
-            </div>
-          </div>
-        </div>
+        <main  data-lk-theme="default" className="h-full grid content-center">
+          <LiveKitRoom
+            token={connectionDetails?.participantToken}
+            serverUrl={connectionDetails?.serverUrl}
+            connect={connectionDetails !== undefined}
+            audio={true}
+            video={false}
+            onMediaDeviceFailure={onDeviceFailure}
+            onDisconnected={() => updateConnectionDetails(null)}
+            className="grid grid-rows-[2fr_1fr] items-center"
+          >
+            <SimpleVoiceAssistant onStateChange={setAgentState} />
+            <ControlBar
+              onConnectButtonClicked={onConnectButtonClicked}
+              agentState={agentState}
+            />
+            <RoomAudioRenderer />
+            <NoAgentNotification state={agentState} />
+          </LiveKitRoom>
+        </main>
       </ActionBox>
     </MainLayout>
   );
-};
+}
 
-export default Interview;
+// SimpleVoiceAssistant component
+function SimpleVoiceAssistant(props) {
+  const { state, audioTrack } = useVoiceAssistant();
+  useEffect(() => {
+    props.onStateChange(state);
+  }, [props, state]);
+
+  return (
+    <div className="h-[300px] max-w-[50vw] mx-auto">
+      <BarVisualizer
+        state={state}
+        barCount={5}
+        trackRef={audioTrack}
+        className="agent-visualizer"
+        options={{ minHeight: 24 }}
+      />
+    </div>
+  );
+}
+
+// ControlBar component
+function ControlBar(props) {
+  const krisp = useKrispNoiseFilter();
+
+  useEffect(() => {
+    krisp.setNoiseFilterEnabled(true);
+  }, []);
+
+  return (
+    <div className="relative h-[100px]">
+      <AnimatePresence>
+        {props.agentState === "disconnected" && (
+          <motion.button
+            initial={{ opacity: 0, top: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, top: "-10px" }}
+            transition={{ duration: 1, ease: [0.09, 1.04, 0.245, 1.055] }}
+            className="uppercase absolute left-1/2 -translate-x-1/2 px-4 py-2 bg-white text-black rounded-md"
+            onClick={props.onConnectButtonClicked}
+          >
+            Start a conversation
+          </motion.button>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {props.agentState !== "disconnected" &&
+          props.agentState !== "connecting" && (
+            <motion.div
+              initial={{ opacity: 0, top: "10px" }}
+              animate={{ opacity: 1, top: 0 }}
+              exit={{ opacity: 0, top: "-10px" }}
+              transition={{ duration: 0.4, ease: [0.09, 1.04, 0.245, 1.055] }}
+              className="flex h-8 absolute left-1/2 -translate-x-1/2  justify-center"
+            >
+              <VoiceAssistantControlBar controls={{ leave: false }} />
+              <DisconnectButton>
+                <CloseIcon />
+              </DisconnectButton>
+            </motion.div>
+          )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Device failure handler
+function onDeviceFailure(error) {
+  console.error(error);
+  alert(
+    "Error acquiring camera or microphone permissions. Please grant the necessary permissions in your browser."
+  );
+}
+
+export default Page;

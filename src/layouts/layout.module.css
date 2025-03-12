@@ -2,7 +2,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden; 
 }
 
 .mainLayout {
@@ -16,7 +16,7 @@
   padding: 0 4rem;
   gap: 4rem;
   position: relative;
-  overflow-y: hidden; /* Prevent vertical scrolling on desktop */
+  overflow-y: hidden; 
 }
 
 .navigationContainer {
@@ -36,15 +36,13 @@
   justify-content: center;
   height: auto;
   padding: 2rem 0;
-  overflow-y: auto; /* Allow content to scroll if needed */
+  overflow-y: hidden;
   max-height: 100%;
 }
 
 .logoContainer {
   position: absolute;
-  /* Align vertically with the ActionBox */
   top: 12rem;
-  /* Position so that the right edge lines up with navigationContainer's right edge */
   left: calc(25rem + 250px);
   transform: translateX(-100%);
   z-index: 100;

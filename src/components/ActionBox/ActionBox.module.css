@@ -1,5 +1,6 @@
 .actionBox {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   height: 600px;
   margin: var(--spacing-xl);
   padding: var(--spacing-xl);
@@ -13,8 +14,10 @@
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  font-family: var(--font-primary); /* Add this to ensure font inheritance */
+  font-family: var(--font-primary);
 }
+
+
 
 .actionBox h1,
 .actionBox h2,

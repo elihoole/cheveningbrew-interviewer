@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Modern color palette */
   --primary: #2c3e50;
@@ -74,6 +78,29 @@
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow: 350ms ease;
+
+  --lk-va-bar-width: 72px;
+  --lk-control-bar-height: unset;
+}
+
+.agent-visualizer > .lk-audio-bar {
+  width: 72px;
+}
+
+.lk-audio-bar-visualizer{
+  background-color: transparent !important;
+}
+
+.lk-agent-control-bar {
+  @apply border-t-0 p-0 h-min mr-4 !important;
+}
+
+.lk-room-container{
+  background-color: transparent !important;
+}
+
+.lk-disconnect-button {
+  @apply h-[36px] hover:bg-[#6b221a] hover:text-[white] bg-[#31100c] border-[#6b221a] !important;
 }
 
 /* Ensure the font is applied globally */
@@ -284,3 +311,10 @@ textarea:focus {
   margin: 0 auto;
   padding: 20px;
 }
+.copyright p {
+  color: var(--neutral-100);
+  opacity: 0.8;
+  text-align: center;
+  
+}
+

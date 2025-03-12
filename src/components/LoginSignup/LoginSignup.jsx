@@ -8,8 +8,8 @@ const LoginSignup = () => {
 
     const login = useGoogleLogin({
         onSuccess: (credentialResponse) => {
-            console.log(credentialResponse);
-            navigate('/upload');
+            console.log(credentialResponse); // Logs the authentication response
+            navigate('/upload'); // Navigate to the upload page after successful login
         },
         onError: () => console.log("Login Failed"),
     });
@@ -26,7 +26,7 @@ const LoginSignup = () => {
                 </button>
             </div>
         </div>
-    )
+    );
 }
 
 export default LoginSignup;
