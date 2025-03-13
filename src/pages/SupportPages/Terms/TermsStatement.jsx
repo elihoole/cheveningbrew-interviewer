@@ -2,8 +2,7 @@
 // a string in the Privacy.jsx file.
 
 const termsPolicyText = `
-# Terms and Conditions
-**Effective Date: December 1, 2024**
+**Effective Date: March 1, 2025**
 
 These Terms and Conditions govern your use of CheveningBrew.com voice AI assistant platform and the subscription services provided. By accessing or using our platform, you agree to comply with these terms. Please read them carefully before proceeding with any transactions or usage.
 

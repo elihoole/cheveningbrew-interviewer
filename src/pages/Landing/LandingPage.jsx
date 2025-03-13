@@ -9,24 +9,67 @@ import { useGoogleLogin } from "@react-oauth/google";
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       // Handle successful login
-      console.log(tokenResponse);
       setIsLoading(true);
-      // Process the token response here
-      // You can call your backend with this token
 
-      // Navigate to upload page on successful authentication
-      navigate("/upload");
+      console.log("Token response:", tokenResponse);
+
+      // Extract ID token
+      const idToken = tokenResponse.credential || tokenResponse.code;
+
+      console.log("ID token:", idToken);
+
+
+      // Send to your backend for verification
+      fetch('http://localhost:8000/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: tokenResponse.code })
+
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log("Response:", response);
+        return response.json();
+      })
+      .then(data => {
+        // Backend should verify token and return user info or session token
+        if (data.authenticated) {
+          // Store user session information
+          localStorage.setItem('authToken', data.authToken);
+
+        if (data.user && data.user.name) {
+            localStorage.setItem('userName', data.user.name);
+        }
+
+
+          navigate("/upload");
+        } else {
+          // Handle authentication failure
+          setIsLoading(false);
+          setError("Authentication failed");
+        }
+      })
+      .catch(error => {
+        console.error("Authentication error:", error);
+        setIsLoading(false);
+        setError("Authentication failed");
+      });
     },
-    onError: (errorResponse) => {
-      // Handle error
-      console.error("Google Login Failed:", errorResponse);
+    onError: (error) => { // Handle error
+      console.error("Authentication error:", error);
       setIsLoading(false);
+      setError("Authentication failed");
     },
-    flow: "implicit", // or 'auth-code' depending on your backend
+    flow: "auth-code", // or 'auth-code' depending on your backend
   });
 
   // Then in your onClick handler, replace the current implementation with:
@@ -59,7 +102,7 @@ const LandingPage = () => {
               Ace your Chevening interview by mocking with our voice-enabled AI
               expert interviewer.{" "}
             </b>
-            Built for aspiring Chevening scholars by Chevening alumni.
+            Built for Chevening aspirants . . . by Chevening alumni.
           </div>
 
           {/* Timeline Section */}
