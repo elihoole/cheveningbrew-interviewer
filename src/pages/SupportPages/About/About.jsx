@@ -8,15 +8,12 @@ const About = () => {
     <SupportPagesLayout>
       <ActionBox>
         <div className={styles.supportContent}>
-          <h1 className={styles.pageTitle}>About cheveningbrew.com</h1>
+          <h1 className={styles.pageTitle}>About CheveningBrew</h1>
           <p className={styles.description}>
             Most Chevening scholars personally knew an alumnus who helped them
             prepare for their final interview. Not all deserving candidates have
-            this privilege. cheveningbrew.com is an effort by progressive
-            Cheveners who wish to level the playing field: we democratise all
-            access to access to tacit knowledge. Practice with our carefully
-            tuned AI interviewer, learn from the feedback, and get ready to ace
-            your Chevening interview.
+            this privilege. cheveningbrew.com is an effort by
+            Chevening alumni who wish to level the playing field: we democratise access to tacit knowledge. Practice with our carefully tuned AI interviewer, learn from the feedback, and get ready to ace your Chevening interview.
           </p>
         </div>
       </ActionBox>

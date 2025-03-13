@@ -1,0 +1,23 @@
+.signoutContainer {
+  text-align: left;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signoutContainer:hover {
+  background-color: rgba(211, 211, 211, 0.1);
+  border-radius: 4px;
+}
+
+.signoutText {
+  font-size: 1rem;
+  color: lightgray;
+  margin: 0;
+}
+
+.signoutText:hover {
+  color: white;
+}
+

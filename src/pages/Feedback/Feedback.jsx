@@ -2,7 +2,6 @@ import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import styles from "./Feedback.module.css";
-import Logo from "../../components/Logo/Logo";
 
 const Feedback = () => {
   return (
@@ -39,7 +38,7 @@ const Feedback = () => {
                 shown in some areas.
               </p>
             </div>
-            
+
 
             <div className={styles.feedbackSection}>
               <h2>Overall Impression</h2>
