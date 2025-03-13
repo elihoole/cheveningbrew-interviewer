@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
 import Footer from "../../components/Footer/Footer";
 import g from "../../assets/images/G.webp";
 import { useGoogleLogin } from "@react-oauth/google";
+import { validateToken, clearAuthData } from '../../utils/auth';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [authSuccess, setAuthSuccess] = useState(false);
+
+  useEffect(() => {
+    if (authSuccess) {
+      console.log("Auth success detected, navigating to /upload");
+      navigate("/upload", { replace: true });
+    }
+  }, [authSuccess, navigate]);
+
+
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       // Handle successful login
       setIsLoading(true);
-
-      console.log("Token response:", tokenResponse);
-
-      // Extract ID token
-      const idToken = tokenResponse.credential || tokenResponse.code;
-
-      console.log("ID token:", idToken);
-
 
       // Send to your backend for verification
       fetch('http://localhost:8000/api/auth/google', {
@@ -43,15 +46,23 @@ const LandingPage = () => {
       .then(data => {
         // Backend should verify token and return user info or session token
         if (data.authenticated) {
-          // Store user session information
+          // First store the token
           localStorage.setItem('authToken', data.authToken);
 
-        if (data.user && data.user.name) {
-            localStorage.setItem('userName', data.user.name);
-        }
-
-
-          navigate("/upload");
+          // Then validate it
+          if (validateToken()) {
+            if (data.user && data.user.name) {
+              localStorage.setItem('userName', data.user.name);
+            }
+            console.log("Authentication successful");
+            setIsLoading(false);
+            setAuthSuccess(true); // This will trigger the useEffect
+          }  else {
+            console.error("Invalid token", data.authToken);
+            clearAuthData();
+            setError("Authentication failed");
+            setIsLoading(false);
+          }
         } else {
           // Handle authentication failure
           setIsLoading(false);
