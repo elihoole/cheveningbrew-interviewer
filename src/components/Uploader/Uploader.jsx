@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import styles from "./Uploader.module.css";
 
 const Uploader = ({ onUploadSuccess }) => {
@@ -12,6 +11,8 @@ const Uploader = ({ onUploadSuccess }) => {
 
   // Configure server URL based on environment
   const API_URL = process.env.REACT_APP_API_URL;
+
+  console.log("API_URL", API_URL);
 
   const handleBrowseClick = () => {
     fileInputRef.current.click();
@@ -45,12 +46,14 @@ const Uploader = ({ onUploadSuccess }) => {
       }
 
       const result = await response.json();
+      console.log("Upload result:", result);
       setUploadProgress("success");
       toast.success("File uploaded successfully!");
 
       // Call the callback with the file path if provided
       if (onUploadSuccess) {
-        onUploadSuccess(result.saved_path);
+        onUploadSuccess(result.interview_questions);
+        localStorage.setItem("interview_questions", JSON.stringify(result.interview_questions));
       }
     } catch (error) {
       console.error("Upload error:", error);
@@ -78,8 +81,7 @@ const Uploader = ({ onUploadSuccess }) => {
       </button>
 
       {uploadProgress === "loading" && (
-        <div className={styles.progressIndicator}>
-          <p>Uploading file...</p>
+        <div className={styles.progressIndicatorContainer}>
         </div>
       )}
 
