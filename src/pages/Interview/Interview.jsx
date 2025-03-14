@@ -12,6 +12,8 @@ import {
   RoomAudioRenderer,
   VoiceAssistantControlBar,
   useVoiceAssistant,
+  useParticipant,
+  useRoom,
 } from "@livekit/components-react";
 import "@livekit/components-styles";
 import { useKrispNoiseFilter } from "@livekit/components-react/krisp";
@@ -27,8 +29,10 @@ function Page() {
     try {
       // Fetch connection details from the backend API
       const response = await axios.get(
-        "https://www.livekit.cheveningbrew.com/token_service"
+        // "https://www.livekit.cheveningbrew.com/token_service"
+        "http://localhost:5000"
       ); // Make GET request to your endpoint
+      console.log("Connection details:", response.data);
       updateConnectionDetails(response.data); // Update the connection details with the API response
     } catch (error) {
       console.error("Error fetching connection details", error);
