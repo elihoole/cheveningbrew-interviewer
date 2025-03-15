@@ -30,6 +30,13 @@ function Page() {
 
       const userName = localStorage.getItem("userName");
       const userQuestions = localStorage.getItem("interviewQuestions");
+      // using userName and time, generate a unique file path for saving chat history
+      // no space allowed in file name. No special characters allowed in file name except underscore
+      const sanitizedUserName = userName.replace(/[^a-zA-Z0-9]/g, '_');
+      const chatHistoryPath = `${sanitizedUserName}_${Date.now()}.txt`;
+
+      // store the chat history path in local storage
+      localStorage.setItem("chatHistoryPath", chatHistoryPath);
 
       console.log("User name:", userName);
       console.log("User questions:", userQuestions);
@@ -41,6 +48,7 @@ function Page() {
         {
           userName: userName,
           userQuestions: userQuestions,
+          chatHistoryPath: chatHistoryPath,
         }
       ); // Make GET request to your endpoint
       console.log("Connection details:", response.data);
