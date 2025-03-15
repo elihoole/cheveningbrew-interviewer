@@ -19,15 +19,59 @@ import "@livekit/components-styles";
 import { useKrispNoiseFilter } from "@livekit/components-react/krisp";
 import { AnimatePresence, motion } from "framer-motion";
 import { MediaDeviceFailure } from "livekit-client";
+import { useNavigate } from "react-router-dom";
 
 // Main Page component
 function Page() {
   const [connectionDetails, updateConnectionDetails] = useState(null);
   const [agentState, setAgentState] = useState("disconnected");
+  const [timeRemaining, setTimeRemaining] = useState(15 * 60); // 15 minutes in seconds
+  const [timerActive, setTimerActive] = useState(false);
+  const navigate = useNavigate();
+
+  // Check if interview has been completed already
+  useEffect(() => {
+    const interviewDone = localStorage.getItem("interviewDone") === "true";
+    if (interviewDone) {
+      navigate("/feedback");
+    }
+  }, [navigate]);
+
+  // Timer countdown effect
+  useEffect(() => {
+    let interval;
+    if (timerActive && timeRemaining > 0) {
+      interval = setInterval(() => {
+        setTimeRemaining(prev => prev - 1);
+      }, 1000);
+    } else if (timeRemaining === 0) {
+      // Time's up - end interview and redirect
+      handleInterviewEnd();
+    }
+
+    return () => clearInterval(interval);
+  }, [timerActive, timeRemaining]);
+
+  // Format time as MM:SS
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handleInterviewEnd = () => {
+    // Mark interview as completed
+    localStorage.setItem("interviewDone", "true");
+
+    // Disconnect from LiveKit room
+    updateConnectionDetails(null);
+
+    // Navigate to feedback page
+    navigate("/feedback");
+  };
 
   const onConnectButtonClicked = useCallback(async () => {
     try {
-
       const userName = localStorage.getItem("userName");
       const userQuestions = localStorage.getItem("interviewQuestions");
       // using userName and time, generate a unique file path for saving chat history
@@ -53,6 +97,9 @@ function Page() {
       ); // Make GET request to your endpoint
       console.log("Connection details:", response.data);
       updateConnectionDetails(response.data); // Update the connection details with the API response
+
+      // Start the timer when connection is established
+      setTimerActive(true);
     } catch (error) {
       console.error("Error fetching connection details", error);
       alert("Failed to fetch connection details");
@@ -64,7 +111,14 @@ function Page() {
       {/* Logo positioned at the top-left corner */}
 
       <ActionBox>
-        <main  data-lk-theme="default" className="h-full grid content-center">
+        {/* Timer display */}
+        {timerActive && (
+          <div className="absolute top-4 right-4 bg-white bg-opacity-80 px-3 py-1 rounded text-black font-mono font-bold">
+            {formatTime(timeRemaining)}
+          </div>
+        )}
+
+        <main data-lk-theme="default" className="h-full grid content-center">
           <LiveKitRoom
             token={connectionDetails?.participantToken}
             serverUrl={connectionDetails?.serverUrl}
@@ -72,13 +126,14 @@ function Page() {
             audio={true}
             video={false}
             onMediaDeviceFailure={onDeviceFailure}
-            onDisconnected={() => updateConnectionDetails(null)}
+            onDisconnected={handleInterviewEnd}
             className="grid grid-rows-[2fr_1fr] items-center"
           >
             <SimpleVoiceAssistant onStateChange={setAgentState} />
             <ControlBar
               onConnectButtonClicked={onConnectButtonClicked}
               agentState={agentState}
+              onDisconnect={handleInterviewEnd}
             />
             <RoomAudioRenderer />
             <NoAgentNotification state={agentState} />
@@ -117,6 +172,13 @@ function ControlBar(props) {
     krisp.setNoiseFilterEnabled(true);
   }, []);
 
+  // Custom disconnect handler to trigger parent component's disconnect logic
+  const handleDisconnect = () => {
+    if (props.onDisconnect) {
+      props.onDisconnect();
+    }
+  };
+
   return (
     <div className="relative h-[100px]">
       <AnimatePresence>
@@ -144,7 +206,7 @@ function ControlBar(props) {
               className="flex h-8 absolute left-1/2 -translate-x-1/2  justify-center"
             >
               <VoiceAssistantControlBar controls={{ leave: false }} />
-              <DisconnectButton>
+              <DisconnectButton onClick={handleDisconnect}>
                 <CloseIcon />
               </DisconnectButton>
             </motion.div>
