@@ -1,3 +1,4 @@
+// src/context/AuthContext.jsx
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { validateToken, clearAuthData } from '../utils/auth';
 
@@ -8,30 +9,41 @@ export const AuthProvider = ({ children }) => {
   const [userName, setUserName] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Check authentication status on mount and token changes
+  // Check authentication status on mount
   useEffect(() => {
     checkAuthStatus();
+
+    // Also set up a listener for localStorage changes
+    window.addEventListener('storage', checkAuthStatus);
+    return () => window.removeEventListener('storage', checkAuthStatus);
   }, []);
 
   const checkAuthStatus = () => {
+    console.log("Checking auth status...");
     setLoading(true);
 
-    // Log current token for debugging
+    // Log token for debugging
     const token = localStorage.getItem('authToken');
-    console.log("Checking auth with token:", token ? "Token exists" : "No token");
+    console.log("Token exists:", !!token);
 
     if (validateToken()) {
-      console.log("Token validation successful");
+      console.log("Token is valid, setting authenticated");
       setIsAuthenticated(true);
       setUserName(localStorage.getItem('userName'));
     } else {
-      console.log("Token validation failed or no token");
+      console.log("Token is invalid or missing");
       clearAuthData();
       setIsAuthenticated(false);
       setUserName(null);
     }
 
     setLoading(false);
+  };
+
+  const login = (token, name) => {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('userName', name || '');
+    checkAuthStatus();
   };
 
   const logout = () => {
@@ -47,6 +59,7 @@ export const AuthProvider = ({ children }) => {
         userName,
         loading,
         checkAuthStatus,
+        login,
         logout
       }}
     >
