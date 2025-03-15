@@ -7,12 +7,14 @@ import Footer from "../../components/Footer/Footer";
 import g from "../../assets/images/G.webp";
 import { useGoogleLogin } from "@react-oauth/google";
 import { validateToken, clearAuthData } from '../../utils/auth';
+import {useAuth} from '../../context/AuthContext';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [authSuccess, setAuthSuccess] = useState(false);
+  const { login: authLogin } = useAuth(); // Renamed to authLogin
 
   useEffect(() => {
     if (authSuccess) {
@@ -21,21 +23,16 @@ const LandingPage = () => {
     }
   }, [authSuccess, navigate]);
 
-
-
-  const login = useGoogleLogin({
+  const googleLogin = useGoogleLogin({ // Renamed to googleLogin
     onSuccess: (tokenResponse) => {
-      // Handle successful login
       setIsLoading(true);
 
-      // Send to your backend for verification
       fetch('http://localhost:8000/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ code: tokenResponse.code })
-
       })
       .then(response => {
         if (!response.ok) {
@@ -45,27 +42,21 @@ const LandingPage = () => {
         return response.json();
       })
       .then(data => {
-        // Backend should verify token and return user info or session token
         if (data.authenticated) {
           // First store the token
           localStorage.setItem('authToken', data.authToken);
 
-          // Then validate it
-          if (validateToken()) {
-            if (data.user && data.user.name) {
-              localStorage.setItem('userName', data.user.name);
-            }
-            console.log("Authentication successful");
-            setIsLoading(false);
-            setAuthSuccess(true); // This will trigger the useEffect
-          }  else {
-            console.error("Invalid token", data.authToken);
-            clearAuthData();
-            setError("Authentication failed");
-            setIsLoading(false);
+          // Call the auth context login
+          if (data.user && data.user.name) {
+            authLogin(data.authToken, data.user.name); // Now using the renamed function
+          } else {
+            authLogin(data.authToken);
           }
+
+          console.log("Authentication successful");
+          setIsLoading(false);
+          setAuthSuccess(true);
         } else {
-          // Handle authentication failure
           setIsLoading(false);
           setError("Authentication failed");
         }
@@ -76,18 +67,17 @@ const LandingPage = () => {
         setError("Authentication failed");
       });
     },
-    onError: (error) => { // Handle error
+    onError: (error) => {
       console.error("Authentication error:", error);
       setIsLoading(false);
       setError("Authentication failed");
     },
-    flow: "auth-code", // or 'auth-code' depending on your backend
+    flow: "auth-code",
   });
 
-  // Then in your onClick handler, replace the current implementation with:
   const handleGoogleSignIn = () => {
     setIsLoading(true);
-    login();
+    googleLogin(); // Updated to use the renamed function
   };
 
   const events = [
