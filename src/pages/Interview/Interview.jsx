@@ -27,10 +27,21 @@ function Page() {
 
   const onConnectButtonClicked = useCallback(async () => {
     try {
+
+      const userName = localStorage.getItem("userName");
+      const userQuestions = localStorage.getItem("interviewQuestions");
+
+      console.log("User name:", userName);
+      console.log("User questions:", userQuestions);
+
       // Fetch connection details from the backend API
-      const response = await axios.get(
+      const response = await axios.post(
         // "https://www.livekit.cheveningbrew.com/token_service"
-        "http://localhost:5000"
+        "http://localhost:5000",
+        {
+          userName: userName,
+          userQuestions: userQuestions,
+        }
       ); // Make GET request to your endpoint
       console.log("Connection details:", response.data);
       updateConnectionDetails(response.data); // Update the connection details with the API response
