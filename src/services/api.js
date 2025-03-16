@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000'; // Update this with your FastAPI server URL
+const API_BASE_URL = 'https://www.cheveningbrew.com/'; // Update this with your FastAPI server URL
 
 export const uploadEssay = async (file) => {
     const formData = new FormData();

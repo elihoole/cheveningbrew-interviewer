@@ -9,12 +9,16 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { validateToken, clearAuthData } from '../../utils/auth';
 import {useAuth} from '../../context/AuthContext';
 
+
+
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [authSuccess, setAuthSuccess] = useState(false);
   const { login: authLogin } = useAuth(); // Renamed to authLogin
+  console.log("login request root", process.env.REACT_APP_CHEVENINGBREW_SERVER_URL)
+
 
   useEffect(() => {
     if (authSuccess) {
@@ -26,8 +30,7 @@ const LandingPage = () => {
   const googleLogin = useGoogleLogin({ // Renamed to googleLogin
     onSuccess: (tokenResponse) => {
       setIsLoading(true);
-
-      fetch('http://localhost:8000/api/auth/google', {
+      fetch(`${process.env.REACT_APP_CHEVENINGBREW_SERVER_URL}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
