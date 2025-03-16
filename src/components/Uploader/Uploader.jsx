@@ -8,6 +8,8 @@ const Uploader = ({ onUploadSuccess }) => {
   const fileInputRef = useRef(null);
 
   const SUPPORTED_FORMATS = ["application/pdf"];
+  // Define maximum file size (in bytes) - 10MB example
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
   // Configure server URL based on environment
   const API_URL = process.env.REACT_APP_CHEVENINGBREW_SERVER_URL || "http://localhost:8001";
@@ -29,6 +31,12 @@ const Uploader = ({ onUploadSuccess }) => {
       return;
     }
 
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error(`File size exceeds the maximum allowed size (${(MAX_FILE_SIZE / (1024 * 1024)).toFixed(1)}MB)`);
+      return;
+    }
+
     setUploadedFile(file);
     setUploadProgress("loading");
 
@@ -36,13 +44,14 @@ const Uploader = ({ onUploadSuccess }) => {
     formData.append("file", file);
 
     try {
-      const response = await fetch(`${API_URL}/upload`, {
+      const response = await fetch(`${API_URL}/upload_to_server`, {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Upload failed");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Upload failed with status: ${response.status}`);
       }
 
       const result = await response.json();
@@ -58,7 +67,7 @@ const Uploader = ({ onUploadSuccess }) => {
     } catch (error) {
       console.error("Upload error:", error);
       setUploadProgress(null);
-      toast.error("File upload failed. Please try again.");
+      toast.error(error.message || "File upload failed. Please try again.");
     }
   };
 
