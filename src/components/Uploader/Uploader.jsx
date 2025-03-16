@@ -10,7 +10,7 @@ const Uploader = ({ onUploadSuccess }) => {
   const SUPPORTED_FORMATS = ["application/pdf"];
 
   // Configure server URL based on environment
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_CHEVENINGBREW_SERVER_URL || "http://localhost:8001";
 
   console.log("API_URL", API_URL);
 
