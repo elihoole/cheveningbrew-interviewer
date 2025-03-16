@@ -82,6 +82,8 @@ function Page() {
       // store the chat history path in local storage
       localStorage.setItem("chatHistoryPath", chatHistoryPath);
 
+      // clear cachedFeedback from local storage if it exists
+      localStorage.removeItem("cachedFeedback");
       console.log("User name:", userName);
       console.log("User questions:", userQuestions);
 

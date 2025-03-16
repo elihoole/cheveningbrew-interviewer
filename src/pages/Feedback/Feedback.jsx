@@ -35,7 +35,7 @@ const Feedback = () => {
         }
 
         // Fetch feedback from the API
-        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8001";
+        const API_URL = process.env.REACT_APP_CHEVENINGBREW_SERVER_URL || "http://localhost:8001";
         const response = await axios.post(
           `${API_URL}/feedback`,
           {

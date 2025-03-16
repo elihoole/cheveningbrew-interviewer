@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('interviewDone');
     localStorage.removeItem('interviewQuestions');
     localStorage.removeItem('lk-user-choices');
+    localStorage.removeItem("paymentCompleted");
 
     // Reset authentication state
     setIsAuthenticated(false);
