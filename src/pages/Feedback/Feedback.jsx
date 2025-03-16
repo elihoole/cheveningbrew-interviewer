@@ -1,56 +1,108 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import styles from "./Feedback.module.css";
+import axios from "axios";
+import ReactMarkdown from "react-markdown";
 
 const Feedback = () => {
+  const [feedback, setFeedback] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        // First, check if feedback exists in localStorage
+        const cachedFeedback = localStorage.getItem("cachedFeedback");
+
+        if (cachedFeedback) {
+          // Use the cached feedback if available
+          console.log("Using cached feedback from localStorage");
+          setFeedback(cachedFeedback);
+          setLoading(false);
+          return;
+        }
+
+        // Get the chat history path from localStorage
+        const chatHistoryPath = localStorage.getItem("chatHistoryPath");
+
+        if (!chatHistoryPath) {
+          throw new Error("Chat history path not found");
+        }
+        else {
+          console.log("Chat history path:", chatHistoryPath);
+        }
+
+        // Fetch feedback from the API
+        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8001";
+        const response = await axios.post(
+          `${API_URL}/feedback`,
+          {
+            chatHistoryPath: chatHistoryPath
+          }
+        );
+
+        const newFeedback = response.data.feedback;
+
+        // Store the feedback in localStorage for future use
+        localStorage.setItem("cachedFeedback", newFeedback);
+
+        setFeedback(newFeedback);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching feedback:", err);
+        setError("Failed to load feedback. Please try again later.");
+        setLoading(false);
+      }
+    };
+
+    fetchFeedback();
+  }, []);
+
+  // Rest of the component remains the same
+  // ...existing code...
+
+  if (loading) {
+    return (
+      <MainLayout>
+        <ActionBox>
+          <div className={styles.loadingContainer}>
+            <div className={styles.spinner}></div>
+            <p>Generating your feedback...</p>
+          </div>
+        </ActionBox>
+      </MainLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainLayout>
+        <ActionBox>
+          <div className={styles.errorContainer}>
+            <h2>Oops! Something went wrong</h2>
+            <p>{error}</p>
+          </div>
+        </ActionBox>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout>
-      {/* Logo positioned at the top-left corner */}
-
       <ActionBox>
         <div className={styles.feedbackContent}>
-          <h1 className={styles.title}>Performance feedback</h1>
-          <div className={styles.feedbackSections}>
-            <div className={styles.feedbackSection}>
-              <h2>Content Analysis</h2>
-              <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: "75%" }}></div>
-              </div>
-              <p>Your response was clear and structured.</p>
+          <div className={styles.title}>Interview Performance Feedback</div>
+          {feedback ? (
+            <div className={styles.markdownContent}>
+              <ReactMarkdown>{feedback}</ReactMarkdown>
             </div>
-
-            <div className={styles.feedbackSection}>
-              <h2>Delivery</h2>
-              <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: "85%" }}></div>
-              </div>
-              <p>The delivery was confident and articulate.</p>
+          ) : (
+            <div className={styles.feedbackSections}>
+              <p>No feedback available.</p>
             </div>
-
-            <div className={styles.feedbackSection}>
-              <h2>Technical Knowledge</h2>
-              <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: "60%" }}></div>
-              </div>
-              <p>
-                The technical knowledge was strong, but more depth could be
-                shown in some areas.
-              </p>
-            </div>
-
-
-            <div className={styles.feedbackSection}>
-              <h2>Overall Impression</h2>
-              <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: "80%" }}></div>
-              </div>
-              <p>
-                Great overall impression, just work on specific technical
-                aspects.
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </ActionBox>
     </MainLayout>
