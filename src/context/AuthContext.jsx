@@ -47,7 +47,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    // Clear auth data with the utility function
     clearAuthData();
+
+    // Clear additional localStorage items
+    localStorage.removeItem('ally-supports-cache');
+    localStorage.removeItem('chatHistoryPath');
+    localStorage.removeItem('interviewDone');
+    localStorage.removeItem('interviewQuestions');
+    localStorage.removeItem('lk-user-choices');
+
+    // Reset authentication state
     setIsAuthenticated(false);
     setUserName(null);
   };

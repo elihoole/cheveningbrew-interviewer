@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import Uploader from "../../components/Uploader/Uploader";
+import PaymentBox from "../../components/PaymentBox/PaymentBox";
 import styles from "./Upload.module.css";
 import { useNavigate } from "react-router-dom";
+
 
 const Upload = () => {
   const [filePath, setFilePath] = useState(null);
@@ -12,6 +14,7 @@ const Upload = () => {
   const handleUploadSuccess = (path) => {
     setFilePath(filePath);
     console.log("File path:", filePath);
+
 
     // Navigate to Interview page
     navigate("/interview");

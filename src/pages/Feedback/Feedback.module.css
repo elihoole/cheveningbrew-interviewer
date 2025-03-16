@@ -9,13 +9,12 @@
 }
 
 .title {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-xl);
-  text-align: left; /* Changed from center to left */
-  color: white;
-  width: 100%; /* Added to match section width */
-  max-width: 600px; /* Match the feedbackSections max-width */
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: left;  /* Explicitly set text alignment to left */
 }
+
 .feedbackSection {
   width: 100%;
 }
