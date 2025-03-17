@@ -18,15 +18,15 @@ const Upload = () => {
   useEffect(() => {
     // Load PayHere script
     const loadPayHereScript = () => {
-      const script = document.createElement('script');
-      script.src = 'https://www.payhere.lk/lib/payhere.js';
+      const script = document.createElement("script");
+      script.src = "https://www.payhere.lk/lib/payhere.js";
       script.async = true;
       script.onload = () => {
-        console.log('PayHere script loaded successfully');
+        console.log("PayHere script loaded successfully");
         setPayHereLoaded(true);
       };
       script.onerror = () => {
-        console.error('Failed to load PayHere script');
+        console.error("Failed to load PayHere script");
       };
       document.body.appendChild(script);
     };
@@ -82,8 +82,10 @@ const Upload = () => {
   // Function to directly initiate the PayHere payment process
   const initiatePaymentDirectly = useCallback(async () => {
     if (!window.payhere || isProcessingPayment) {
-      console.error('PayHere not loaded or payment already processing');
-      alert("Payment system not loaded. Please refresh the page and try again.");
+      console.error("PayHere not loaded or payment already processing");
+      alert(
+        "Payment system not loaded. Please refresh the page and try again."
+      );
       return;
     }
 
@@ -107,14 +109,13 @@ const Upload = () => {
       };
 
       // Get hash from server (more secure than generating on client)
-      const API_URL = process.env.REACT_APP_CHEVENINGBREW_SERVER_URL || "http://localhost:8001";
-      const hashResponse = await axios.post(
-        `${API_URL}/start`,
-        paymentDetails
-      );
+      const API_URL =
+        process.env.REACT_APP_CHEVENINGBREW_SERVER_URL ||
+        "http://localhost:8001";
+      const hashResponse = await axios.post(`${API_URL}/start`, paymentDetails);
 
       if (!hashResponse.data || !hashResponse.data.hash) {
-        throw new Error('Failed to generate payment hash');
+        throw new Error("Failed to generate payment hash");
       }
 
       const { hash, merchant_id } = hashResponse.data;
@@ -125,7 +126,8 @@ const Upload = () => {
         merchant_id: merchant_id,
         return_url: process.env.REACT_APP_RETURN_URL || window.location.href,
         cancel_url: process.env.REACT_APP_CANCEL_URL || window.location.href,
-        notify_url: process.env.REACT_APP_NOTIFY_URL || `${API_URL}/payment/notify`,
+        notify_url:
+          process.env.REACT_APP_NOTIFY_URL || `${API_URL}/payment/notify`,
         order_id: paymentDetails.order_id,
         items: "Chevening Interview Prep - One-time Access",
         amount: paymentDetails.amount,
@@ -150,7 +152,7 @@ const Upload = () => {
       // Start PayHere payment
       window.payhere.startPayment(payment);
     } catch (error) {
-      console.error('Payment initialization error:', error);
+      console.error("Payment initialization error:", error);
       alert("There was an error initializing the payment. Please try again.");
       setIsProcessingPayment(false);
     }
@@ -158,28 +160,36 @@ const Upload = () => {
 
   return (
     <MainLayout>
-      {showPaymentPopup && (
-      <div className={styles.paymentPopupOverlay}>
-        <div className={styles.paymentPopup}>
-          <div className={styles.paymentPopupHeader}>
-            <h2>One-Time Payment Required</h2>
-            <button
-              className={styles.closeButton}
-              onClick={handleClosePaymentPopup}
-            >
-              ×
-            </button>
+      {paymentCompleted ? (
+        <Uploader onUploadSuccess={handleUploadSuccess} />
+      ) : (
+        showPaymentPopup && (
+          <div className={styles.paymentPopupOverlay}>
+            <div className={styles.paymentPopup}>
+              <div className={styles.paymentPopupHeader}>
+                <h2 className={styles.h2}>One-Time Payment Required</h2>
+              </div>
+              <div className={styles.pricingContent}>
+                <div className={styles.pricingCard}>
+                  <h3 className={styles.pricingTitle}>Basic</h3>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                  industry. Lorem Ipsum has been the industry's standard dummy
+                  text ever since the 1500s, 
+                  <span>Two slots for $10</span></p>
+                </div>
+              </div>
+
+              <PaymentBox
+                onPaymentComplete={handlePaymentComplete}
+                onPaymentError={handlePaymentError}
+                onPaymentDismissed={handlePaymentDismissed}
+                isProcessing={isProcessingPayment}
+                setIsProcessing={setIsProcessingPayment}
+              />
+            </div>
           </div>
-          <PaymentBox
-            onPaymentComplete={handlePaymentComplete}
-            onPaymentError={handlePaymentError}
-            onPaymentDismissed={handlePaymentDismissed}
-            isProcessing={isProcessingPayment}
-            setIsProcessing={setIsProcessingPayment}
-          />
-        </div>
-      </div>
-    )}
+        )
+      )}
 
       <ActionBox>
         <div className={styles.uploadContainer}>
@@ -187,20 +197,13 @@ const Upload = () => {
             Download your Chevening Application as a PDF file and upload it
             here.
           </h1>
-          {paymentCompleted ? (
-            <Uploader onUploadSuccess={handleUploadSuccess} />
-          ) : (
-            <div className={styles.paymentRequired}>
-              <p>You need to complete the payment to access the upload functionality.</p>
-              <button
-                className={styles.showPaymentButton}
-                onClick={() => setShowPaymentPopup(true)}
-              >
-                Make Payment
-              </button>
-            </div>
-          )}
-        </div>
+            <button
+              className={styles.showPaymentButton}
+              onClick={() => setShowPaymentPopup(true)}
+            >
+              upload file
+            </button>
+          </div>
       </ActionBox>
     </MainLayout>
   );
