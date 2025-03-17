@@ -1,0 +1,192 @@
+/* Add a wrapper to contain both content and footer */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #4b0082, #800080);
+}
+
+/* Style the main container */
+.container {
+  background-image: url("../../assets/images/back.webp");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Align items to the start (left side) */
+  padding: 100px;
+  background: linear-gradient(to right, #4b0082, #800080b5, #80008066);
+  min-height: 100vh;
+
+  color: white;
+}
+
+.description {
+  font-size: 1.1rem;
+  max-width: 768px;
+  margin-top: 20px;
+  line-height: 1.5rem;
+}
+
+/* Add a timeline container if it doesn't exist */
+.timeline-container {
+  max-width: 768px;
+  width: 100%;
+  position: relative;
+  margin: 30px 0;
+  line-height: 2rem;
+}
+
+/* The timeline itself */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 40px;
+}
+
+/* The vertical line that connects the events */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: #ccc;
+}
+
+/* Each event's container */
+.timeline-event {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* The content of each event */
+.timeline-content {
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #b2b45044;
+}
+
+/* The title of each event */
+.timeline-event-title {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+/* Style for the button to match logo alignment */
+.landingPageButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 0;
+  /* Remove the left margin to align with other elements */
+  padding: 10px 30px;
+  /* Adjust padding for better appearance */
+  margin-top: 20px;
+  /* Add some spacing between timeline and button */
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+  /* Ensure button aligns with other elements */
+}
+
+/* Hover effect */
+.landingPageButton:hover {
+  background-color: white;
+  color: #dd0c7e;
+}
+
+/* Footer styling */
+.footerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 4rem;
+  background: linear-gradient(
+    to right,
+    rgba(75, 0, 130, 0.9),
+    rgba(128, 0, 128, 0.8)
+  );
+}
+
+.landingPageFooter {
+  color: #ffffff;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 80px 50px;
+    align-items: center;
+
+    .timeline-container {
+      width: 100%;
+    }
+
+    .timeline {
+      padding-left: 30px;
+    }
+
+    .timeline-content {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .timeline::before {
+      left: 4px;
+    }
+
+    .timeline-event-title {
+      font-size: 1.3rem;
+    }
+    .landingPageButton {
+      align-self: center;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .footerContainer {
+      padding-left: 1rem;
+      justify-content: center;
+    }
+  }
+
+  /* For very small screens */
+  @media screen and (max-width: 480px) {
+    .content {
+      padding: 50px 20px;
+    }
+
+    .timeline {
+      padding-left: 20px;
+    }
+
+    .timeline-content {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      line-height: 1.5rem;
+    }
+
+    .timeline-event-title {
+      font-size: 1.2rem;
+    }
+
+    .landingPageButton {
+      font-size: 1rem;
+    }
+  }
+}

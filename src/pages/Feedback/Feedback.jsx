@@ -1,37 +1,110 @@
-import React from 'react';
-import MainLayout from '../../layouts/MainLayout';
-import './Feedback.module.css';
+import React, { useState, useEffect } from "react";
+import MainLayout from "../../layouts/MainLayout";
+import ActionBox from "../../components/ActionBox/ActionBox";
+import styles from "./Feedback.module.css";
+import axios from "axios";
+import ReactMarkdown from "react-markdown";
 
 const Feedback = () => {
+  const [feedback, setFeedback] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        // First, check if feedback exists in localStorage
+        const cachedFeedback = localStorage.getItem("cachedFeedback");
+
+        if (cachedFeedback) {
+          // Use the cached feedback if available
+          console.log("Using cached feedback from localStorage");
+          setFeedback(cachedFeedback);
+          setLoading(false);
+          return;
+        }
+
+        // Get the chat history path from localStorage
+        const chatHistoryPath = localStorage.getItem("chatHistoryPath");
+
+        if (!chatHistoryPath) {
+          throw new Error("Chat history path not found");
+        }
+        else {
+          console.log("Chat history path:", chatHistoryPath);
+        }
+
+        // Fetch feedback from the API
+        const API_URL = process.env.REACT_APP_CHEVENINGBREW_SERVER_URL || "http://localhost:8001";
+        const response = await axios.post(
+          `${API_URL}/feedback_from_server`,
+          {
+            chatHistoryPath: chatHistoryPath
+          }
+        );
+
+        const newFeedback = response.data.feedback;
+
+        // Store the feedback in localStorage for future use
+        localStorage.setItem("cachedFeedback", newFeedback);
+
+        setFeedback(newFeedback);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching feedback:", err);
+        setError("Failed to load feedback. Please try again later.");
+        setLoading(false);
+      }
+    };
+
+    fetchFeedback();
+  }, []);
+
+  // Rest of the component remains the same
+  // ...existing code...
+
+  if (loading) {
+    return (
+      <MainLayout>
+        <ActionBox>
+          <div className={styles.loadingContainer}>
+            <div className={styles.spinner}></div>
+            <p>Generating your feedback...</p>
+          </div>
+        </ActionBox>
+      </MainLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainLayout>
+        <ActionBox>
+          <div className={styles.errorContainer}>
+            <h2>Oops! Something went wrong</h2>
+            <p>{error}</p>
+          </div>
+        </ActionBox>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout>
-      <div className="feedback-container max-w-md w-full mx-auto">
-        <div className="content">
-          <h1 className="text-3xl font-bold mb-8 text-white">Interview Feedback</h1>
-          
-          <div className="feedback-box bg-white/10 p-8 rounded-lg backdrop-blur-sm">
-            <div className="feedback-section mb-6">
-              <h2 className="text-white text-xl mb-4">Content Analysis</h2>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '75%' }}></div>
-              </div>
-              <p className="text-white/70 mt-2">Your response was clear and structured</p>
+      <ActionBox>
+        <div className={styles.feedbackContent}>
+          <div className={styles.title}>Interview Performance Feedback</div>
+          {feedback ? (
+            <div className={styles.markdownContent}>
+              <ReactMarkdown>{feedback}</ReactMarkdown>
             </div>
-
-            <div className="feedback-section mb-6">
-              <h2 className="text-white text-xl mb-4">Delivery</h2>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '85%' }}></div>
-              </div>
-              <p className="text-white/70 mt-2">Excellent pace and clarity</p>
+          ) : (
+            <div className={styles.feedbackSections}>
+              <p>No feedback available.</p>
             </div>
-
-            <button className="bg-gradient-to-br from-[#dd0c7e] via-[#ca1582] to-[#a6208e] text-white px-6 py-2 rounded-full w-full mt-6">
-              View Detailed Report
-            </button>
-          </div>
+          )}
         </div>
-      </div>
+      </ActionBox>
     </MainLayout>
   );
 };

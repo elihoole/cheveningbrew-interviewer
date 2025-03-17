@@ -1,44 +1,29 @@
-/* In Interview.css */
-.interview-container {
-  width: 100%;
-  max-width: 480px;
-  height: 100vh;
-  background: #2B3147;
-  position: relative;
+.interviewContent {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-xl);
+  gap: var(--spacing-2xl);
 }
 
-/* Status Bar */
-.status-bar {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-lg);
+  width: 80%; /* Reduced from 100% to align with content */
   margin-bottom: var(--spacing-xl);
 }
 
-.status-icons {
+.progressDots {
   display: flex;
   gap: var(--spacing-sm);
 }
 
-/* Question Progress */
-.progress-dots {
-  position: absolute;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
 }
@@ -47,158 +32,120 @@
   background: white;
 }
 
-/* Main Content */
-.content {
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 var(--spacing-2xl);
+  gap: var(--spacing-2xl);
 }
 
-.question-section {
-  margin-top: 4rem;
+.timerSection {
   text-align: center;
 }
 
-.question-number {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.question-text {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1.3;
-  margin-bottom: 2rem;
-}
-
-.timer-section {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.timer-display {
-  width: 120px;
-  height: 120px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.timerDisplay {
   color: white;
 }
 
 .time {
-  font-size: 1.5rem;
+  font-size: var(--font-size-3xl);
   font-weight: bold;
 }
 
-.time-label {
-  font-size: 0.75rem;
-  opacity: 0.7;
-  text-align: center;
-  line-height: 1.2;
+.timeLabel {
+  font-size: var(--font-size-md);
+  opacity: 0.8;
 }
-
-.record-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 4rem;
-}
-
-.record-button {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, #FF6B6B, #4ECDC4);
-  padding: 4px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.record-button-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: white;
-  transition: transform 0.3s ease;
-}
-
-.record-button.recording .record-button-inner {
-  transform: scale(0.6);
-}
-
-/* Tips Card */
-.tips-button {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.75rem;
-  border-radius: 2rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-.tips-icon {
-  font-size: 1.25rem;
-}
-
-.tips-text {
-  font-size: 0.75rem;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-}
-
-/* Bottom Navigation */
-.bottom-nav {
-  position: fixed;
-  bottom: var(--spacing-md);
-  left: 50%;
-  transform: translateX(-50%);
+.controlsContainer {
   display: flex;
   gap: var(--spacing-xl);
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: var(--radius-full);
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-xl);
 }
 
-.nav-button {
-  width: 40px;
-  height: 40px;
+.controlButton {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: none;
-  background: var(--neutral-500);
-  color: var(--neutral-100);
-  cursor: pointer;
-  transition: all var(--transition-normal);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-size: 24px;
 }
 
-.nav-button:hover {
-  background: var(--neutral-400);
+.controlButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
-.nav-button.home {
-  width: 44px;
-  height: 44px;
-  border: 2px solid var(--neutral-300);
+.playPauseButton {
+  background: linear-gradient(to right, #dd0c7e, #ca1582);
+}
+
+.stopButton {
+  background: rgba(255, 255, 255, 0.1);
+}
+.tipsButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm); /* Reduced padding */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-size: var(--font-size-sm); /* Smaller font size */
+}
+
+.tipsIcon {
+  font-size: var(--font-size-lg); /* Reduced from xl to lg */
+}
+
+.tipsText {
+  color: white;
+  font-size: var(--font-size-xs); /* Reduced from sm to xs */
+}
+
+@media screen and (max-width: 768px) {
+  .interviewContent {
+    padding: var(--spacing-lg);
+  }
+  .header {
+    width: 100%;
+  }
+
+  .time {
+    font-size: var(--font-size-2xl);
+  }
+
+  .recordButton {
+    width: 60px;
+    height: 60px;
+  }
+}
+.logoContainer {
+  position: absolute;
+  top: 60px;  
+  left: 145px; 
+  z-index: 100; 
+}
+
+@media screen and (max-width: 768px) {
+  .logoContainer {
+    position: absolute; 
+    top: 40px; 
+    left: 48%; 
+    transform: translateX(-50%); 
+    width: max-content; 
+    z-index: 100; 
+    margin-bottom: 30px;
+  }
 }

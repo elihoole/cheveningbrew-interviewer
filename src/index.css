@@ -1,14 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  /* Primary Colors */
-  --primary: #4A25E1;
-  --primary-dark: #5B3CE8;
-  --secondary: #7BD0FF;
-  --secondary-dark: #45B6FF;
-  --accent: #7B4BFF;
-  --accent-dark: #6536FF;
+  /* Modern color palette */
+  --primary: #2c3e50;
+  --secondary: #3498db;
+  --accent: #f39c12;
+  --success: #2ecc71;
+  --danger: #e74c3c;
+  --light: #ecf0f1;
+  --dark: #2c3e50;
+  --background: #f8f9fa;
 
   /* Neutral Colors */
-  --neutral-100: #FFFFFF;
+  --neutral-100: #ffffff;
   --neutral-200: rgba(255, 255, 255, 0.9);
   --neutral-300: rgba(255, 255, 255, 0.7);
   --neutral-400: rgba(255, 255, 255, 0.5);
@@ -16,10 +22,26 @@
   --neutral-600: rgba(255, 255, 255, 0.1);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  --gradient-secondary: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-  --gradient-accent: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
-  --gradient-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    90deg,
+    var(--secondary) 0%,
+    var(--secondary-dark) 100%
+  );
+  --gradient-accent: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    var(--accent-dark) 100%
+  );
+  --gradient-overlay: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
 
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -43,7 +65,7 @@
   --radius-full: 9999px;
 
   /* Typography */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-primary: "Cascadia Mono", monospace; /* Updated primary font */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
@@ -56,8 +78,32 @@
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow: 350ms ease;
+
+  --lk-va-bar-width: 72px;
+  --lk-control-bar-height: unset;
 }
 
+.agent-visualizer > .lk-audio-bar {
+  width: 72px;
+}
+
+.lk-audio-bar-visualizer{
+  background-color: transparent !important;
+}
+
+.lk-agent-control-bar {
+  @apply border-t-0 p-0 h-min mr-4 !important;
+}
+
+.lk-room-container{
+  background-color: transparent !important;
+}
+
+.lk-disconnect-button {
+  @apply h-[36px] hover:bg-[#6b221a] hover:text-[white] bg-[#31100c] border-[#6b221a] !important;
+}
+
+/* Ensure the font is applied globally */
 * {
   margin: 0;
   padding: 0;
@@ -65,43 +111,79 @@
 }
 
 body {
-  margin: 0;
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--gradient-primary);
+  background: linear-gradient(
+    to bottom,
+    #4b0082,
+    #800080
+  ); /* Updated gradient */
   color: var(--neutral-200);
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures that the background covers the full height */
 }
 
 /* Typography Styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button,
+input,
+textarea {
   font-family: var(--font-primary);
-  font-weight: 600;
   line-height: 1.2;
-  color: var(--neutral-100);
 }
 
 h1 {
   font-size: var(--font-size-3xl);
   margin-bottom: var(--spacing-lg);
+  font-weight: 600;
+  color: var(--neutral-100);
 }
 
 h2 {
   font-size: var(--font-size-2xl);
   margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: var(--neutral-100);
 }
 
 h3 {
   font-size: var(--font-size-xl);
   margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: var(--neutral-100);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+  color: var(--neutral-100);
+}
+
+h5 {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--neutral-100);
+}
+
+h6 {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--neutral-100);
 }
 
 p {
   margin-bottom: var(--spacing-md);
   color: var(--neutral-400);
 }
-
 /* Button Base Styles */
 .btn {
   display: inline-flex;
@@ -110,7 +192,8 @@ p {
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-full);
   font-weight: 500;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
   cursor: pointer;
   border: none;
 }
@@ -157,7 +240,8 @@ p {
 }
 
 /* Form Elements */
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--neutral-400);
@@ -167,29 +251,55 @@ input, textarea {
   transition: var(--transition-fast);
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(29, 79, 145, 0.1);
 }
 
 /* Utility Classes */
-.text-primary { color: var(--primary); }
-.text-secondary { color: var(--secondary); }
-.bg-primary { background-color: var(--primary); }
-.bg-secondary { background-color: var(--secondary); }
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
 
-.font-thin { font-weight: 100; }
-.font-extralight { font-weight: 200; }
-.font-light { font-weight: 300; }
-.font-regular { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-extrabold { font-weight: 800; }
-.font-black { font-weight: 900; }
+.font-thin {
+  font-weight: 100;
+}
+.font-extralight {
+  font-weight: 200;
+}
+.font-light {
+  font-weight: 300;
+}
+.font-regular {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-extrabold {
+  font-weight: 800;
+}
+.font-black {
+  font-weight: 900;
+}
 
-/* Glass effect */
 .glass {
   background: var(--gradient-overlay);
   backdrop-filter: blur(10px);
@@ -197,7 +307,14 @@ input:focus, textarea:focus {
 }
 
 .container {
-  max-width: 1200px; /* Or whatever max width you prefer */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px; /* Adjust as needed */
+  padding: 20px;
 }
+.copyright p {
+  color: var(--neutral-100);
+  opacity: 0.8;
+  text-align: center;
+  
+}
+

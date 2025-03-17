@@ -1,26 +1,66 @@
-.feedback-container {
-  background: #2B3147;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.feedbackContent {
   width: 100%;
-  max-width: 480px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.content {
-  flex: 1;
+  height: 100%;
+  padding: var(--spacing-xl);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.feedback-box {
-  margin-top: 2rem;
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: left;  /* Explicitly set text alignment to left */
 }
 
-.progress-bar {
+.feedbackSection {
+  width: 100%;
+}
+
+.feedbackSection h2 {
+  color: white;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.feedbackSection p {
+  margin-top: var(--spacing-sm);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* Add custom scrollbar styling */
+.feedbackContent::-webkit-scrollbar {
+  width: 6px; /* Slightly thinner */
+}
+
+.feedbackContent::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); /* More subtle track */
+  border-radius: 8px;
+  margin: 4px; /* Add some space around the track */
+}
+
+.feedbackContent::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(221, 12, 126, 0.8),
+    rgba(202, 21, 130, 0.8)
+  ); /* Match the brand gradient */
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.feedbackContent::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(221, 12, 126, 1),
+    rgba(202, 21, 130, 1)
+  ); /* Stronger gradient on hover */
+}
+
+.progressBar {
   width: 100%;
   height: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -30,16 +70,36 @@
 
 .progress {
   height: 100%;
-  background: linear-gradient(to right, #dd0c7e, #a6208e);
+  background: linear-gradient(to right, #dd0c7e, #ca1582);
   border-radius: 4px;
   transition: width 0.3s ease;
 }
 
-.feedback-section {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 1.5rem;
-}
+/* Hide scrollbar on mobile */
+@media screen and (max-width: 768px) {
+  .feedbackContent::-webkit-scrollbar {
+    display: none;
+  }
 
-.feedback-section:last-child {
-  border-bottom: none;
+  .feedbackContent {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .logoContainer {
+    position: absolute;
+    top: 60px;
+    left: 145px;
+    z-index: 100;
+  }
+  @media screen and (max-width: 768px) {
+    .logoContainer {
+      position: absolute;
+      top: 40px;
+      left: 48%;
+      transform: translateX(-50%);
+      width: max-content;
+      z-index: 100;
+      margin-bottom: 30px;
+    }
+  }
 }

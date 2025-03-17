@@ -1,14 +1,33 @@
-// MainLayout.jsx
-import React from 'react';
-import Header from '../components/Header/Header';
+import React, { useState, useEffect } from "react";
+import Tabs from "../components/Header/Tabs/Tabs";
+import Footer from "../components/Footer/Footer";
+import Logo from "../components/Logo/Logo";
+import NameDisplay from "../components/NameDisplay/NameDisplay";
+import SignOUt from "../components/SignOut/SignOut";
+import styles from "./layout.module.css";
 
 const MainLayout = ({ children }) => {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    // Get username from localStorage when component mounts
+    const storedName = localStorage.getItem('userName');
+    if (storedName) {
+      setUserName(storedName);
+    }
+  }, []);
   return (
-    <div className="min-h-screen bg-[#2B3147]">
-      <Header />
-      <main className="pt-32">
-        {children}
-      </main>
+    <div className={styles.pageContainer}>
+      <div className={styles.mainLayout}>
+        <div className={styles.navigationContainer}>
+          <NameDisplay userName={userName} />
+          <Logo />
+          <SignOUt />
+          <Tabs />
+        </div>
+        <div className={styles.contentContainer}>{children}</div>
+      </div>
+      <Footer />
     </div>
   );
 };
