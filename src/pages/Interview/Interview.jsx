@@ -32,8 +32,11 @@ function Page() {
   // Check if interview has been completed already
   useEffect(() => {
     const interviewDone = localStorage.getItem("interviewDone") === "true";
+    const paymentCompleted = localStorage.getItem("paymentCompleted") === "true";
     if (interviewDone) {
       navigate("/feedback");
+    } else if (!paymentCompleted) {
+      navigate("/upload");
     }
   }, [navigate]);
 
