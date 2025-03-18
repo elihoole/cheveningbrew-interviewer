@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   /* Modern color palette */
@@ -92,7 +92,10 @@
 }
 
 .lk-agent-control-bar {
-  @apply border-t-0 p-0 h-min mr-4 !important;
+  border-top: 0 !important;
+  padding: 0 !important;
+  height: min-content !important;
+  margin-right: 1rem !important;
 }
 
 .lk-room-container{
@@ -100,7 +103,14 @@
 }
 
 .lk-disconnect-button {
-  @apply h-[36px] hover:bg-[#6b221a] hover:text-[white] bg-[#31100c] border-[#6b221a] !important;
+    height: 36px !important;
+    background-color: #31100c !important;
+    border-color: #6b221a !important;
+  }
+
+  .lk-disconnect-button:hover {
+    background-color: #6b221a !important;
+    color: white !important;
 }
 
 /* Ensure the font is applied globally */
@@ -315,6 +325,6 @@ textarea:focus {
   color: var(--neutral-100);
   opacity: 0.8;
   text-align: center;
-  
+
 }
 
