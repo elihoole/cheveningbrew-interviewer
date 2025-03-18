@@ -2,7 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import styles from './PaymentBox.module.css';
 
-const PaymentBox = ({ onPaymentComplete, onPaymentError, onPaymentDismissed }) => {
+
+const PaymentBox = ({ 
+  email, // Add email prop 
+  amount, 
+  description,
+  onPaymentComplete, 
+  onPaymentError, 
+  onPaymentDismissed  }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [payHereLoaded, setPayHereLoaded] = useState(false);
 
@@ -62,11 +69,11 @@ const PaymentBox = ({ onPaymentComplete, onPaymentError, onPaymentDismissed }) =
       // Prepare payment details
       const paymentDetails = {
         order_id: `ORDER-${Date.now()}`,
-        amount: "5.00",
+        amount: amount.toFixed(2), // Dynamic amount
         currency: "USD",
         first_name: "",
         last_name: "",
-        email: "",
+        email: email,
         phone: "",
         address: "",
         city: "",
@@ -120,11 +127,13 @@ const PaymentBox = ({ onPaymentComplete, onPaymentError, onPaymentDismissed }) =
       alert("There was an error initializing the payment. Please try again.");
       setIsProcessing(false);
     }
-  }, [isProcessing, onPaymentComplete, onPaymentDismissed, onPaymentError]);
+  }, [email, amount, isProcessing, isProcessing, onPaymentComplete, onPaymentDismissed, onPaymentError]);
 
   // ...existing code...
   return (
     <div className={styles.paymentBox}>
+    <div className={styles.tierInfo}>
+      {description && <p className={styles.tierDescription}>{description}</p>}
       <button
         className={styles.paymentButton}
         onClick={initiatePayment}
@@ -132,16 +141,17 @@ const PaymentBox = ({ onPaymentComplete, onPaymentError, onPaymentDismissed }) =
       >
         {isProcessing ? (
           <span>
-            <i className={styles.loadingIcon}></i> Processing Payment...
+            <i className={styles.loadingIcon}></i> Processing...
           </span>
         ) : (
           <span>
-            <i className={styles.paymentIcon}></i> Pay $5 Now
+            <i className={styles.paymentIcon}></i> Pay ${amount}
           </span>
         )}
       </button>
-      {!payHereLoaded && <p className={styles.loadingMessage}>Loading payment system...</p>}
     </div>
+    {!payHereLoaded && <p className={styles.loadingMessage}>Loading payment system...</p>}
+  </div>
   );
 };
 

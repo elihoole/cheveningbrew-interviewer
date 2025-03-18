@@ -3,7 +3,8 @@ import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
 import styles from "../SupportPages.module.css";
 
-const Pricing = () => {
+
+const Pricing = ({ plans }) => {
   return (
     <SupportPagesLayout>
       <ActionBox>
@@ -15,18 +16,12 @@ const Pricing = () => {
             Chevening interview.
           </p>
           <div className={styles.pricingContainer}>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Basic</h3>
-              Two slots for $10
-            </div>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Standard</h3>
-              Five slots for $20
-            </div>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Premium</h3>
-              Ten slots for $30
-            </div>
+            {plans.map((plan) => (
+              <div className={styles.pricingContent} key={plan.title}>
+                <h3 className={styles.pricingTitle}>{plan.title}</h3>
+                {plan.description}
+              </div>
+            ))}
           </div>
         </div>
       </ActionBox>

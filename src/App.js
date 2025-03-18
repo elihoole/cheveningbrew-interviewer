@@ -12,6 +12,7 @@ import About from "./pages/SupportPages/About/About";
 import Pricing from "./pages/SupportPages/Pricing/Pricing";
 import Privacy from "./pages/SupportPages/Privacy/Privacy";
 import Terms from "./pages/SupportPages/Terms/Terms";
+import { PRICING_PLANS } from './constants/pricing';
 
 const App = () => {
   return (
@@ -23,9 +24,10 @@ const App = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/help" element={<Help />} />
             <Route path="/about" element={<About />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/pricing" element={<Pricing plans={PRICING_PLANS}/>} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
