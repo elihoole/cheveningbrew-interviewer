@@ -64,11 +64,11 @@ const Upload = () => {
               <div className={styles.paymentPopupOverlay}>
                 <div className={styles.paymentPopup}>
                   <div className={styles.paymentPopupHeader}>
-                    <h2 className={styles.h2}>One-Time Payment Required</h2>
+                    <h2 className={styles.h2}>One-time payment required</h2>
                   </div>
                   <div className={styles.pricingContent}>
                     <div className={styles.pricingCard}>
-                      <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
+                      <p className={styles.pricingText}>Access the app by paying a one-time fee of $5 for a 20 min interview</p>
                     </div>
                   </div>
 
