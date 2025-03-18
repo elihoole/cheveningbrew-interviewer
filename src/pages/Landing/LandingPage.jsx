@@ -26,10 +26,10 @@ const LandingPage = () => {
     }
   }, [authSuccess, navigate]);
 
-  const googleLogin = useGoogleLogin({ // Renamed to googleLogin
+  const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       setIsLoading(true);
-      fetch(`${process.env.REACT_APP_CHEVENINGBREW_SERVER_URL}/api/auth/google`, {
+      fetch(`${process.env.REACT_APP_USER_AUTH_SERVER}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -49,8 +49,8 @@ const LandingPage = () => {
           localStorage.setItem('authToken', data.authToken);
 
           // Call the auth context login
-          if (data.user && data.user.name) {
-            authLogin(data.authToken, data.user.name); // Now using the renamed function
+          if (data.user && data.user.name && data.user.email) {
+            authLogin(data.authToken, data.user.name, data.user.email); // Now using the renamed function
           } else {
             authLogin(data.authToken);
           }
