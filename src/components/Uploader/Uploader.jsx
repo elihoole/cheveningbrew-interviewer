@@ -86,7 +86,7 @@ const Uploader = ({ onUploadSuccess }) => {
         onClick={handleBrowseClick}
         disabled={uploadProgress === "loading"}
       >
-        {uploadProgress === "loading" ? "Uploading..." : "Browse Files"}
+        {uploadProgress === "loading" ? "Uploading..." : "Browse files"}
       </button>
 
       {uploadProgress === "loading" && (

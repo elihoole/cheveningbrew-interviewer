@@ -40,9 +40,10 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const login = (token, name) => {
+  const login = (token, name, email) => {
     localStorage.setItem('authToken', token);
     localStorage.setItem('userName', name || '');
+    localStorage.setItem('userEmail', email || '');
     checkAuthStatus();
   };
 
