@@ -85,6 +85,8 @@ const PaymentBox = ({ onPaymentComplete, onPaymentError, onPaymentDismissed }) =
 
       const { hash, merchant_id } = hashResponse.data;
 
+      console.log("Sandbox", process.env.REACT_APP_SANDBOX === "true" || true);
+
       // Configure payment object with hash from server
       const payment = {
         sandbox: process.env.REACT_APP_SANDBOX === "true" || true,
