@@ -92,8 +92,7 @@ function Page() {
 
       // Fetch connection details from the backend API
       const response = await axios.post(
-        "https://www.cheveningbrew.com/token_service",
-        //"http://localhost:5000",
+        `${process.env.REACT_APP_CHEVENINGBREW_SERVER_URL}/token_service`,
         {
           userName: userName,
           userQuestions: userQuestions,
