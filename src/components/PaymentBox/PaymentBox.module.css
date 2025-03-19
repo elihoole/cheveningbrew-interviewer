@@ -11,10 +11,12 @@
 
 .tierDescription {
   font-size: 0.9em;
-  color: #666;
+  color: #ffffff;
   margin-bottom: 10px;
 }
-
+/* .paymentBox{
+  display: flex;
+} */
 .paymentButton {
   width: 150px;
   max-width: 200px;
@@ -31,4 +33,56 @@
 
 .paymentButton:hover {
   background-color: rgb(107, 121, 109);
+}
+
+.sessionInfo{
+  margin-top: 10px;
+  padding: 5px;
+}
+
+
+/* Default styles remain unchanged */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .tierInfo {
+    width: 90%;
+    margin: 10px auto;
+    padding: 12px;
+  }
+
+  .tierDescription {
+    font-size: 0.85em;
+  }
+
+  .paymentButton {
+    width: 130px;
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .tierInfo {
+    width: 100%;
+    padding: 10px;
+    margin: 0px auto;
+  }
+
+  .tierDescription {
+    font-size: 0.8em;
+    margin-bottom: 8px;
+  }
+
+  .paymentButton {
+    width: 100%;
+    font-size: 0.85em;
+    padding: 10px;
+  }
+
+  .sessionInfo {
+    text-align: center;
+    padding: 5px;
+  }
 }

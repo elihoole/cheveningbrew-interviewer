@@ -2,14 +2,15 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import styles from './PaymentBox.module.css';
 
-
 const PaymentBox = ({ 
   email, // Add email prop 
   amount, 
   description,
+  session,
   onPaymentComplete, 
   onPaymentError, 
-  onPaymentDismissed  }) => {
+  onPaymentDismissed  
+}) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [payHereLoaded, setPayHereLoaded] = useState(false);
 
@@ -127,9 +128,8 @@ const PaymentBox = ({
       alert("There was an error initializing the payment. Please try again.");
       setIsProcessing(false);
     }
-  }, [email, amount, isProcessing, isProcessing, onPaymentComplete, onPaymentDismissed, onPaymentError]);
+  }, [email, amount, isProcessing, onPaymentComplete, onPaymentDismissed, onPaymentError]);
 
-  // ...existing code...
   return (
     <div className={styles.paymentBox}>
       <div className={styles.tierInfo}>
@@ -149,16 +149,10 @@ const PaymentBox = ({
             </span>
           )}
         </button>
-        <div className="flex flex-col space-y-2 align-left  ">
-          <li> 1 session</li>
-          <li> 2 sessions</li>
-          <li> 10 sessions</li>
-         </div>
+        <div className="flex flex-col space-y-2 align-left">
+          <p>session:{session}</p>
+        </div>
       </div>
-      
-      {!payHereLoaded && (
-        <p className={styles.loadingMessage}>Loading payment system...</p>
-      )}
     </div>
   );
 };

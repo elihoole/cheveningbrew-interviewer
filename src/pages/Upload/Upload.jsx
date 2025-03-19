@@ -6,6 +6,7 @@ import PaymentBox from "../../components/PaymentBox/PaymentBox";
 import styles from "./Upload.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
+import Subscription from "../../components/Subcription/Subcription";
 
 const Upload = () => {
   const [filePath, setFilePath] = useState(null);
@@ -64,47 +65,7 @@ const Upload = () => {
           ) : (
             showPaymentPopup && (
               <div className={styles.paymentPopupOverlay}>
-                <div className={styles.paymentPopup}>
-                  <div className={styles.paymentPopupHeader}>
-                    <h2 className={styles.h2}>Choose Your Payment Option</h2>
-                  </div>
-                  <div className={styles.pricingContent}>
-                    <div className={styles.pricingCard}>
-                      <p className={styles.pricingText}>
-                        Select a payment tier:
-                      </p>
-                      {/* Basic Tier */}
-                      <div className="flex flex-row space-x-7">
-                      <PaymentBox
-                        amount={5}
-                        description="Basic Access"
-                        email={user?.email || ""} // Pass email as prop
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      {/* Premium Tier */}
-                      <PaymentBox
-                        amount={20}
-                        description="Premium Features"
-                        email={user?.email || ""} // Pass email as prop
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      {/* Professional Tier */}
-                      <PaymentBox
-                        amount={30}
-                        description="Professional Package"
-                        email={user?.email || ""} // Pass email as prop
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+               <Subscription />
               </div>
             )
           )}
