@@ -74,7 +74,7 @@ const Upload = () => {
                         Select a payment tier:
                       </p>
                       {/* Basic Tier */}
-                      <div className="flex flex-col space-y-4">
+                      <div className="flex flex-row space-x-7">
                       <PaymentBox
                         amount={5}
                         description="Basic Access"

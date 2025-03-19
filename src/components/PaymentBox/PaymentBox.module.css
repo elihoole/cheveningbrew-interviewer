@@ -1,5 +1,6 @@
 .tierInfo {
   display: center;
+  width: auto;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
   margin: 15px 0;
   padding: 15px;
@@ -15,7 +16,8 @@
 }
 
 .paymentButton {
-  width: 50%;
+  width: 150px;
+  max-width: 200px;
   margin-top: 20px;
   padding: 12px;
   font-size: 1em;

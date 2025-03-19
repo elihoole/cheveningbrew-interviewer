@@ -132,26 +132,34 @@ const PaymentBox = ({
   // ...existing code...
   return (
     <div className={styles.paymentBox}>
-    <div className={styles.tierInfo}>
-      {description && <p className={styles.tierDescription}>{description}</p>}
-      <button
-        className={styles.paymentButton}
-        onClick={initiatePayment}
-        disabled={!payHereLoaded || isProcessing}
-      >
-        {isProcessing ? (
-          <span>
-            <i className={styles.loadingIcon}></i> Processing...
-          </span>
-        ) : (
-          <span>
-            <i className={styles.paymentIcon}></i> Pay ${amount}
-          </span>
-        )}
-      </button>
+      <div className={styles.tierInfo}>
+        {description && <p className={styles.tierDescription}>{description}</p>}
+        <button
+          className={styles.paymentButton}
+          onClick={initiatePayment}
+          disabled={!payHereLoaded || isProcessing}
+        >
+          {isProcessing ? (
+            <span>
+              <i className={styles.loadingIcon}></i> Processing...
+            </span>
+          ) : (
+            <span>
+              <i className={styles.paymentIcon}></i> Pay ${amount}
+            </span>
+          )}
+        </button>
+        <div className="flex flex-col space-y-2 align-left  ">
+          <li> 1 session</li>
+          <li> 2 sessions</li>
+          <li> 10 sessions</li>
+         </div>
+      </div>
+      
+      {!payHereLoaded && (
+        <p className={styles.loadingMessage}>Loading payment system...</p>
+      )}
     </div>
-    {!payHereLoaded && <p className={styles.loadingMessage}>Loading payment system...</p>}
-  </div>
   );
 };
 
