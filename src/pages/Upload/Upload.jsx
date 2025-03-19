@@ -74,6 +74,7 @@ const Upload = () => {
                         Select a payment tier:
                       </p>
                       {/* Basic Tier */}
+                      <div className="flex flex-col space-y-4">
                       <PaymentBox
                         amount={5}
                         description="Basic Access"
@@ -100,6 +101,7 @@ const Upload = () => {
                         onPaymentError={handlePaymentError}
                         onPaymentDismissed={handlePaymentDismissed}
                       />
+                      </div>
                     </div>
                   </div>
                 </div>
