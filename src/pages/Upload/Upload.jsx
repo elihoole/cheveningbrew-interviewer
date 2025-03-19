@@ -63,20 +63,43 @@ const Upload = () => {
             showPaymentPopup && (
               <div className={styles.paymentPopupOverlay}>
                 <div className={styles.paymentPopup}>
-                  <div className={styles.paymentPopupHeader}>
-                    <h2 className={styles.h2}>One-Time Payment Required</h2>
-                  </div>
-                  <div className={styles.pricingContent}>
-                    <div className={styles.pricingCard}>
-                      <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
+                    <div className={styles.paymentPopupHeader}>
+                      <h2 className={styles.h2}>One-Time Payment Required</h2>
                     </div>
-                  </div>
 
-                  <PaymentBox
-                    onPaymentComplete={handlePaymentComplete}
-                    onPaymentError={handlePaymentError}
-                    onPaymentDismissed={handlePaymentDismissed}
-                  />
+                    <div className={styles.pricingContainer}>
+                      <div className={styles.pricingContent}>
+                        <div className={styles.pricingCard}>
+                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
+                        </div>
+                        <PaymentBox name="Basic" amount="10.00"
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                      </div>
+                      <div className={styles.pricingContent}>
+                        <div className={styles.pricingCard}>
+                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
+                        </div>
+                        <PaymentBox
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                      </div>
+                      <div className={styles.pricingContent}>
+                        <div className={styles.pricingCard}>
+                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
+                        </div>
+                        <PaymentBox
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                      </div>
+                    </div>
+                    
                 </div>
               </div>
             )
