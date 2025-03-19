@@ -64,44 +64,45 @@ const Upload = () => {
           ) : (
             showPaymentPopup && (
               <div className={styles.paymentPopupOverlay}>
-                // Update the payment popup content to show multiple options
-<div className={styles.paymentPopup}>
-  <div className={styles.paymentPopupHeader}>
-    <h2 className={styles.h2}>Choose Your Payment Option</h2>
-  </div>
-  <div className={styles.pricingContent}>
-    <div className={styles.pricingCard}>
-      <p className={styles.pricingText}>Select a payment tier:</p>
-      {/* Basic Tier */}
-      <PaymentBox
-        amount={5}
-        description="Basic Access"
-        email={user?.email || ''}  // Pass email as prop
-        onPaymentComplete={handlePaymentComplete}
-        onPaymentError={handlePaymentError}
-        onPaymentDismissed={handlePaymentDismissed}
-      />
-      {/* Premium Tier */}
-      <PaymentBox
-        amount={20}
-        description="Premium Features"
-        email={user?.email || ''}  // Pass email as prop
-        onPaymentComplete={handlePaymentComplete}
-        onPaymentError={handlePaymentError}
-        onPaymentDismissed={handlePaymentDismissed}
-      />
-      {/* Professional Tier */}
-      <PaymentBox
-        amount={30}
-        description="Professional Package"
-        email={user?.email || ''}  // Pass email as prop
-        onPaymentComplete={handlePaymentComplete}
-        onPaymentError={handlePaymentError}
-        onPaymentDismissed={handlePaymentDismissed}
-      />
-    </div>
-  </div>
-</div>
+                <div className={styles.paymentPopup}>
+                  <div className={styles.paymentPopupHeader}>
+                    <h2 className={styles.h2}>Choose Your Payment Option</h2>
+                  </div>
+                  <div className={styles.pricingContent}>
+                    <div className={styles.pricingCard}>
+                      <p className={styles.pricingText}>
+                        Select a payment tier:
+                      </p>
+                      {/* Basic Tier */}
+                      <PaymentBox
+                        amount={5}
+                        description="Basic Access"
+                        email={user?.email || ""} // Pass email as prop
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                      {/* Premium Tier */}
+                      <PaymentBox
+                        amount={20}
+                        description="Premium Features"
+                        email={user?.email || ""} // Pass email as prop
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                      {/* Professional Tier */}
+                      <PaymentBox
+                        amount={30}
+                        description="Professional Package"
+                        email={user?.email || ""} // Pass email as prop
+                        onPaymentComplete={handlePaymentComplete}
+                        onPaymentError={handlePaymentError}
+                        onPaymentDismissed={handlePaymentDismissed}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             )
           )}
