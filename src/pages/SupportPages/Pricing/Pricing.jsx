@@ -1,6 +1,7 @@
 import React from "react";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
+import PaymentBox from "../../../components/PaymentBox/PaymentBox";
 import styles from "../SupportPages.module.css";
 
 const Pricing = () => {
@@ -18,14 +19,17 @@ const Pricing = () => {
             <div className={styles.pricingContent}>
               <h3 className={styles.pricingTitle}>Basic</h3>
               Two slots for $10
+              <PaymentBox/>
             </div>
             <div className={styles.pricingContent}>
               <h3 className={styles.pricingTitle}>Standard</h3>
               Five slots for $20
+              <PaymentBox/>
             </div>
             <div className={styles.pricingContent}>
               <h3 className={styles.pricingTitle}>Premium</h3>
               Ten slots for $30
+              <PaymentBox/>
             </div>
           </div>
         </div>

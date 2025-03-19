@@ -36,10 +36,10 @@
     #800080
   );
   border-radius: 8px;
-
-  max-height: auto;
+  height: 90%;
+  max-height: 400px;
   width: 90%;
-  max-width: 600px;
+  max-width: 900px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.352);
   overflow: hidden;
 }
@@ -89,6 +89,14 @@
   align-items: center;
   
 }
+
+.pricingContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 20px 0;
+}
+
 
 .paymentRequired {
   text-align: center;
