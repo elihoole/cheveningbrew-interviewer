@@ -3,8 +3,19 @@ import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
 import PaymentBox from "../../../components/PaymentBox/PaymentBox";
 import styles from "../SupportPages.module.css";
+import { useAuth } from '../../../context/AuthContext';
+import Sub_price from "../../../components/Subcription/Sub_price";
 
 const Pricing = () => {
+  const { user } = useAuth();
+
+  // Define pricing plans with dynamic session count
+  const plans = [
+    { title: "Basic", price: 5, description: "Basic Access", sessionCount: 1 },
+    { title: "Standard", price: 10, description: "Standard Access", sessionCount: 3 },
+    { title: "Premium", price: 20, description: "Premium Access", sessionCount: 5 },
+  ];
+
   return (
     <SupportPagesLayout>
       <ActionBox>
@@ -12,26 +23,9 @@ const Pricing = () => {
           <h1 className={styles.pageTitle}>Pricing</h1>
           <p className={styles.description}>
             Explore our pricing plans to find the perfect fit for your needs.
-            Each interview slot is 15 minutes long, covering the breadth of the
-            Chevening interview.
           </p>
-          <div className={styles.pricingContainer}>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Basic</h3>
-              Two slots for $10
-              <PaymentBox/>
-            </div>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Standard</h3>
-              Five slots for $20
-              <PaymentBox/>
-            </div>
-            <div className={styles.pricingContent}>
-              <h3 className={styles.pricingTitle}>Premium</h3>
-              Ten slots for $30
-              <PaymentBox/>
-            </div>
-          </div>
+          <Sub_price />
+
         </div>
       </ActionBox>
     </SupportPagesLayout>

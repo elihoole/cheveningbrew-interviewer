@@ -5,12 +5,15 @@ import Uploader from "../../components/Uploader/Uploader";
 import PaymentBox from "../../components/PaymentBox/PaymentBox";
 import styles from "./Upload.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
+import Subscription from "../../components/Subcription/Subcription";
 
 const Upload = () => {
   const [filePath, setFilePath] = useState(null);
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     // Check if the user has already paid (from localStorage)
@@ -62,45 +65,8 @@ const Upload = () => {
           ) : (
             showPaymentPopup && (
               <div className={styles.paymentPopupOverlay}>
-                <div className={styles.paymentPopup}>
-                    <div className={styles.paymentPopupHeader}>
-                      <h2 className={styles.h2}>One-Time Payment Required</h2>
-                    </div>
+               <Subscription />
 
-                    <div className={styles.pricingContainer}>
-                      <div className={styles.pricingContent}>
-                        <div className={styles.pricingCard}>
-                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
-                        </div>
-                        <PaymentBox name="Basic" amount="10.00"
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      </div>
-                      <div className={styles.pricingContent}>
-                        <div className={styles.pricingCard}>
-                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
-                        </div>
-                        <PaymentBox
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      </div>
-                      <div className={styles.pricingContent}>
-                        <div className={styles.pricingCard}>
-                          <p className={styles.pricingText}>Access the app by paying a one-time fee of USD 5</p>
-                        </div>
-                        <PaymentBox
-                        onPaymentComplete={handlePaymentComplete}
-                        onPaymentError={handlePaymentError}
-                        onPaymentDismissed={handlePaymentDismissed}
-                      />
-                      </div>
-                    </div>
-                    
-                </div>
               </div>
             )
           )}
