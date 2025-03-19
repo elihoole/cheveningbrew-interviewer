@@ -1,6 +1,7 @@
 import React from "react";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
+import PaymentBox from "../../../components/PaymentBox/PaymentBox";
 import styles from "../SupportPages.module.css";
 import { useAuth } from '../../../context/AuthContext';
 import Sub_price from "../../../components/Subcription/Sub_price";
@@ -24,6 +25,7 @@ const Pricing = () => {
             Explore our pricing plans to find the perfect fit for your needs.
           </p>
           <Sub_price />
+
         </div>
       </ActionBox>
     </SupportPagesLayout>

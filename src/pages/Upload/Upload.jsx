@@ -66,6 +66,7 @@ const Upload = () => {
             showPaymentPopup && (
               <div className={styles.paymentPopupOverlay}>
                <Subscription />
+
               </div>
             )
           )}
