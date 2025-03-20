@@ -39,7 +39,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.352);
   overflow: hidden;
-  
   margin: auto;
 }
 .pricingGrid {
@@ -48,7 +47,7 @@
   gap: 70px; /* Increase spacing */
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin:30px 30px;
 }
 .paymentPopupHeader {
   display: flex;
@@ -162,13 +161,14 @@
 /* responsive */
 @media (max-width: 1024px) {
   .pricingGrid {
+    height: 100%;
     grid-template-columns: repeat(1, 1fr); /* Two columns for tablets */
     gap: 20px;
   }
 
   .paymentPopup {
     width: 90%;
-    height: auto;
+    height: 90%;
     max-height: 100%;
     margin: auto;
   }

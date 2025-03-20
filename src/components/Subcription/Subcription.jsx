@@ -16,7 +16,7 @@ export default function Subscription() {
           <div className={styles.pricingContent}>
             <div className={styles.pricingCard}>
               <p className={styles.pricingText}>Select a payment tier:</p>
-                <Sub_price />
+              <Sub_price />
             </div>
           </div>
         </div>
