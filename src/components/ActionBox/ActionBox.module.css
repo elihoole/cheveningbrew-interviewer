@@ -1,7 +1,10 @@
 .actionBox {
   width: 100%;
-  max-width: 1000px;
-  height: 600px;
+  /* max-width: 1000px;
+  height: 600px; */
+  height: auto;
+  max-height: 100%;
+  min-height: 500px;
   margin: var(--spacing-xl);
   padding: var(--spacing-xl);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -47,9 +50,35 @@
 
 
 /* Tablet (768px and below) */
+@media (max-width: 1024px){
+  .actionBox {
+    height: auto;
+    max-height: 100%;
+    min-height: 500px;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg);
+  }
+
+  .actionBox h1 {
+    font-size: 2.4rem;
+  }
+
+  .actionBox h2 {
+    font-size: 2.2rem;
+  }
+
+  .actionBox h3 {
+    font-size: 2rem;
+  }
+
+  .actionBox p {
+    font-size: 1.2rem;
+  }
+}
 @media (max-width: 768px) {
   .actionBox {
     height: auto;
+    max-height: 100%;
     min-height: 500px;
     padding: var(--spacing-lg);
     margin: var(--spacing-lg);

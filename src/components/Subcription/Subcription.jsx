@@ -1,27 +1,10 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import PaymentBox from "../PaymentBox/PaymentBox";
 import styles from "../../pages/Upload/Upload.module.css";
-import { PRICING_PLANS } from "../../constants/pricing"; // Ensure correct path
 import Sub_price from "./Sub_price";
 
 export default function Subscription() {
     const [showPaymentPopup, setShowPaymentPopup] = useState(true);
     const [paymentCompleted, setPaymentCompleted] = useState(false);
-    const { user } = useAuth();
-    
-      const handlePaymentComplete = () => {
-        setPaymentCompleted(true);
-        setShowPaymentPopup(false);
-      };
-    
-      const handlePaymentError = () => {
-        alert("There was an error with the payment. Please try again.");
-      };
-    
-      const handlePaymentDismissed = () => {
-        console.log("Payment dismissed by user");
-      };
 
   return (
     <div>
@@ -34,25 +17,6 @@ export default function Subscription() {
             <div className={styles.pricingCard}>
               <p className={styles.pricingText}>Select a payment tier:</p>
                 <Sub_price />
-              {/* Pricing Plans Grid */}
-              {/* <div className={styles.pricingGrid}>
-                {Object.keys(PRICING_PLANS).map((planKey) => {
-                  const plan = PRICING_PLANS[planKey]; // Extract the plan object
-
-                  return (
-                    <PaymentBox
-                      key={planKey}
-                      amount={parseInt(plan.price)}
-                      description={plan.title}
-                      session={plan.session} // ✅ Fix: Access session from plan
-                      email={user?.email || ""}
-                      onPaymentComplete={handlePaymentComplete}
-                      onPaymentError={handlePaymentError}
-                      onPaymentDismissed={handlePaymentDismissed}
-                    />
-                  );
-                })}
-              </div> */}
             </div>
           </div>
         </div>

@@ -27,6 +27,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
 }
 
 .paymentPopup {
@@ -38,12 +39,14 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.352);
   overflow: hidden;
+  
+  margin: auto;
 }
 .pricingGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 70px; /* Increase spacing */
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 }
@@ -62,16 +65,6 @@
   font-size: 20px;
   color: var(--accent);
 }
-
-/* .closeButton {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-  padding: 0;
-  line-height: 1;
-} */
 
 .paymentPopupBody {
   padding: 20px;
@@ -159,10 +152,12 @@
   background-color: #0052a3;
 }
 
+
+/* responsive */
 @media (max-width: 1024px) {
   .pricingGrid {
     grid-template-columns: repeat(1, 1fr); /* Two columns for tablets */
-    gap: 30px;
+    gap: 20px;
   }
 
   .paymentPopup {
