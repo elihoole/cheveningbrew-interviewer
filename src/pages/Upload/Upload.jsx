@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import ActionBox from "../../components/ActionBox/ActionBox";
 import Uploader from "../../components/Uploader/Uploader";
-import PaymentBox from "../../components/PaymentBox/PaymentBox";
 import styles from "./Upload.module.css";
 import { useNavigate } from "react-router-dom";
+import Subscription from "../../components/Subcription/Subcription";
 
 const Upload = () => {
   const [filePath, setFilePath] = useState(null);
@@ -33,20 +33,6 @@ const Upload = () => {
     navigate("/interview");
   };
 
-  const handlePaymentComplete = () => {
-    setPaymentCompleted(true);
-    setShowPaymentPopup(false);
-  };
-
-  const handlePaymentError = (error) => {
-    // Just handle UI implications of payment errors
-    alert("There was an error with the payment. Please try again.");
-  };
-
-  const handlePaymentDismissed = () => {
-    // Just handle UI implications of payment dismissal
-    console.log("Payment dismissed by user");
-  };
 
   return (
     <MainLayout>
