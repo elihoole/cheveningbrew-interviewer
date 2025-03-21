@@ -10,6 +10,7 @@ const Upload = () => {
   const [filePath, setFilePath] = useState(null);
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [showRulesPopup, setShowRulesPopup] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,9 +30,16 @@ const Upload = () => {
     setFilePath(path);
     console.log("File path:", path);
 
-    // Navigate to Interview page
+    // Show rules popup instead of navigating immediately
+    setShowRulesPopup(true);
+  };
+
+  const handleRulesAgreed = () => {
+    setShowRulesPopup(false);
+    // Navigate to Interview page after agreement
     navigate("/interview");
   };
+
 
   const handlePaymentComplete = () => {
     setPaymentCompleted(true);
@@ -80,6 +88,33 @@ const Upload = () => {
                 </div>
               </div>
             )
+          )}
+
+          {showRulesPopup && (
+            <div className={styles.paymentPopupOverlay}>
+              <div className={styles.paymentPopup}>
+                <div className={styles.paymentPopupHeader}>
+                  <h2 className={styles.h2}>Interview Rules</h2>
+                </div>
+                <div className={styles.rulesContent}>
+                  <ol className={styles.rulesList}>
+                    <li>* If you quit the interview prematurely before the time is up, you will be graded up to the completion and feedback will be based on that.</li>
+                    <li>* This is a real-time voice AI platform, so you simply have to have a conversation. Press "Start Conversation" when you are ready.</li>
+                    <li>* It will take up to ~10 secs for the AI interviewer to connect with you upon pressing "Start Conversation".</li>
+                    <li>* Wait if the interviewer is taking some time (couple of seconds) to respond. This is normal.</li>
+                    <li>* If you want to change the default audio device, use the dropdown next to the mic.</li>
+                  </ol>
+                </div>
+                <div className={styles.rulesActions}>
+                  <button
+                    className={styles.agreeButton}
+                    onClick={handleRulesAgreed}
+                  >
+                    Agree and continue
+                  </button>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </ActionBox>

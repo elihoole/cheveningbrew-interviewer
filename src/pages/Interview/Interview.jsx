@@ -20,13 +20,14 @@ import { useKrispNoiseFilter } from "@livekit/components-react/krisp";
 import { AnimatePresence, motion } from "framer-motion";
 import { MediaDeviceFailure } from "livekit-client";
 import { useNavigate } from "react-router-dom";
-
+import styles from "./Interview.module.css";
 // Main Page component
 function Page() {
   const [connectionDetails, updateConnectionDetails] = useState(null);
   const [agentState, setAgentState] = useState("disconnected");
   const [timeRemaining, setTimeRemaining] = useState(20 * 60); // 15 minutes in seconds
   const [timerActive, setTimerActive] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const navigate = useNavigate();
 
   // Check if interview has been completed already
@@ -62,16 +63,35 @@ function Page() {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handleInterviewEnd = () => {
-    // Mark interview as completed
+  const handleInterviewEnd = (forceEnd = false) => {
+    // If timer hasn't expired and not forcing end, show confirmation
+    if (timeRemaining > 0 && !forceEnd && timerActive) {
+      setShowConfirmDialog(true);
+      return;
+    }
+
     localStorage.setItem("interviewDone", "true");
-
-    // Disconnect from LiveKit room
     updateConnectionDetails(null);
-
-    // Navigate to feedback page
     navigate("/feedback");
   };
+
+  const handleRoomDisconnect = () => {
+    // Only handle the disconnection if we're not already showing the confirmation
+    if (!showConfirmDialog && timeRemaining > 0 && timerActive) {
+      setShowConfirmDialog(true);
+    }
+  };
+
+  const confirmEndInterview = () => {
+    setShowConfirmDialog(false);
+    // Force end the interview
+    handleInterviewEnd(true);
+  };
+
+  const cancelEndInterview = () => {
+    setShowConfirmDialog(false);
+  };
+
 
   const onConnectButtonClicked = useCallback(async () => {
     try {
@@ -90,9 +110,14 @@ function Page() {
       console.log("User name:", userName);
       console.log("User questions:", userQuestions);
 
+
+      // if REACT_APP_ENV === "local", set the POST URL to http://localhost:5001
+      // else set the POST URL to the backend API URL
+      const postUrl = process.env.REACT_APP_ENV === "local" ? "http://localhost:5001" : `${process.env.REACT_APP_CHEVENINGBREW_SERVER_URL}/token_service`;
+
       // Fetch connection details from the backend API
       const response = await axios.post(
-        `${process.env.REACT_APP_CHEVENINGBREW_SERVER_URL}/token_service`,
+        `${postUrl}`,
         {
           userName: userName,
           userQuestions: userQuestions,
@@ -122,6 +147,33 @@ function Page() {
           </div>
         )}
 
+
+        {/* Confirmation Dialog */}
+        {showConfirmDialog && (
+          <div className={styles.confirmDialogOverlay}>
+            <div className={styles.confirmDialog}>
+              <h3 className={styles.confirmDialogTitle}>End Interview Early?</h3>
+              <p className={styles.confirmDialogMessage}>
+                Are you sure you want to end the interview now? You will be assessed only on what you've completed so far and will not be allowed to retake the interview.
+              </p>
+              <div className={styles.confirmDialogButtons}>
+  <button
+    onClick={cancelEndInterview}
+    className={styles.confirmDialogCancelButton}
+  >
+    Cancel
+  </button>
+  <button
+    onClick={confirmEndInterview}
+    className={styles.confirmDialogEndButton}
+  >
+    End Interview
+  </button>
+</div>
+            </div>
+          </div>
+        )}
+
         <main data-lk-theme="default" className="h-full grid content-center">
           <LiveKitRoom
             token={connectionDetails?.participantToken}
@@ -130,7 +182,7 @@ function Page() {
             audio={true}
             video={false}
             onMediaDeviceFailure={onDeviceFailure}
-            onDisconnected={handleInterviewEnd}
+            onDisconnected={handleRoomDisconnect}
             className="grid grid-rows-[2fr_1fr] items-center"
           >
             <SimpleVoiceAssistant onStateChange={setAgentState} />

@@ -133,19 +133,96 @@
 }
 .logoContainer {
   position: absolute;
-  top: 60px;  
-  left: 145px; 
-  z-index: 100; 
+  top: 60px;
+  left: 145px;
+  z-index: 100;
 }
 
 @media screen and (max-width: 768px) {
   .logoContainer {
-    position: absolute; 
-    top: 40px; 
-    left: 48%; 
-    transform: translateX(-50%); 
-    width: max-content; 
-    z-index: 100; 
+    position: absolute;
+    top: 40px;
+    left: 48%;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 100;
     margin-bottom: 30px;
   }
+}
+/* ...existing code... */
+
+.confirmDialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirmDialog {
+  background-color: white;
+  border-radius: 4px;
+  padding: 20px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.confirmDialogTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.confirmDialogMessage {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  color: #555;
+  font-size: 14px;
+}
+
+.confirmDialogButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.confirmDialogCancelButton {
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 100px;
+  text-align: center;
+}
+
+.confirmDialogCancelButton:hover {
+  background-color: #e0e0e0;
+}
+
+.confirmDialogEndButton {
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  background-color: #dc3545;  /* Red color for destructive action */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+}
+
+.confirmDialogEndButton:hover {
+  background-color: #c82333;  /* Darker red on hover */
 }
