@@ -14,8 +14,7 @@
   line-height: 1.4;
 }
 
-/* Add these styles to your existing Upload.module.css */
-
+/* Payment Popup Overlay */
 .paymentPopupOverlay {
   position: fixed;
   top: 0;
@@ -27,7 +26,6 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-
 }
 
 .paymentPopup {
@@ -37,18 +35,13 @@
     #800080
   );
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.352);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   overflow: hidden;
+  width: 90%;
   margin: auto;
 }
-.pricingGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 70px; /* Increase spacing */
-  justify-content: space-between;
-  align-items: center;
-  margin:30px 30px;
-}
+
+/* Payment Popup Header */
 .paymentPopupHeader {
   display: flex;
   justify-content: space-between;
@@ -65,46 +58,45 @@
   color: var(--accent);
 }
 
+/* Payment Popup Body */
 .paymentPopupBody {
-  padding: 20px;
-}
-
-.pricingText {
-  color: var(--neutral-100);
-  margin-top: 10px;
-  padding: 5px;
-  text-align: center;
-}
-
-.pricingCard {
-.pricingCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.pricingCard button {
-  width: 100%; /* Ensures consistent size */
-  max-width: 200px; /* Prevents it from stretching too much */
   padding: 20px;
 }
 
 .paymentPopupBody p {
   margin-bottom: 20px;
   color: #555;
-  align-items: center;
-
+  text-align: center;
 }
 
-.pricingContainer{
+/* Pricing Grid */
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns for desktops */
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+
+/* Pricing Card */
+.pricingCard {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin: 20px 0 20px 0;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  max-width: auto;
 }
 
+.pricingCard button {
+  width: 100%;
+  max-width: 200px;
+  padding: 20px;
+}
 
+/* Payment Required Section */
 .paymentRequired {
   text-align: center;
   padding: 20px;
@@ -118,22 +110,7 @@
   color: #555;
 }
 
-.showPaymentButton {
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.showPaymentButton:hover {
-  background-color: #0052a3;
-}
-
-
+/* Payment Popup Footer */
 .paymentPopupFooter {
   padding: 16px 20px;
   background-color: #f5f5f5;
@@ -142,6 +119,8 @@
   justify-content: flex-end;
 }
 
+/* Payment Buttons */
+.showPaymentButton,
 .proceedToPaymentButton {
   background-color: #0066cc;
   color: white;
@@ -153,24 +132,21 @@
   transition: background-color 0.3s;
 }
 
+.showPaymentButton:hover,
 .proceedToPaymentButton:hover {
   background-color: #0052a3;
 }
 
-
-/* responsive */
+/* Responsive Design */
 @media (max-width: 1024px) {
   .pricingGrid {
-    height: 100%;
     grid-template-columns: repeat(1, 1fr); /* Two columns for tablets */
-    gap: 20px;
+    gap: 40px;
   }
 
   .paymentPopup {
     width: 90%;
-    height: 90%;
     max-height: 100%;
-    margin: auto;
   }
 }
 
@@ -227,5 +203,4 @@
     padding: 10px;
     font-size: 14px;
   }
-}
 }

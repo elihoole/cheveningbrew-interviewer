@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   width: auto;
-  max-width: 100%;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
   margin: 15px 0;
   padding: 15px;
@@ -46,7 +45,7 @@
     width: 90%;
     margin: 10px auto;
     padding: 12px;
-  text-align: center;
+    text-align: center;
   }
 
   .tierDescription {
@@ -55,7 +54,7 @@
 
   .paymentButton {
     width: 100%;
-    max-width: 100px;
+    max-width: 200px; /* Slightly increased for better tap usability */
     font-size: 0.9em;
     padding: 10px;
   }

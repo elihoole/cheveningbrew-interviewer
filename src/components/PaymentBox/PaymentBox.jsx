@@ -133,7 +133,7 @@ const PaymentBox = ({
   }, [email, amount, isProcessing, onPaymentComplete, onPaymentDismissed, onPaymentError]);
 
   return (
-    <div className={styles.paymentBox}>
+  
       <div className={styles.tierInfo}>
         {description && <p className={styles.tierDescription}>{description}</p>}
         <button
@@ -155,7 +155,7 @@ const PaymentBox = ({
           <p>session:{session}</p>
         </div>
       </div>
-    </div>
+
   );
 };
 

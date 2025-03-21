@@ -23,7 +23,6 @@ export default function Sub_price() {
         console.log("Payment dismissed by user");
       };
   return (
-    <div>
       <div className={styles.pricingGrid}>
                 {Object.keys(PRICING_PLANS).map((planKey) => {
                   const plan = PRICING_PLANS[planKey]; // Extract the plan object
@@ -42,6 +41,5 @@ export default function Sub_price() {
                   );
                 })}
               </div>
-    </div>
   )
 }
