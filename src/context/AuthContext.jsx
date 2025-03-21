@@ -61,7 +61,8 @@ export const AuthProvider = ({ children }) => {
       'paymentCompleted',
       'userEmail',
       'userName',
-      'authToken'
+      'authToken',
+      'cachedFeedback'
     ];
 
     itemsToClear.forEach(item => localStorage.removeItem(item));
