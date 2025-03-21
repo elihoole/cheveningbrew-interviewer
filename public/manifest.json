@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CheveningBrew",
+  "name": "AI mock interview for aspiring Chevening scholars",
   "icons": [
     {
       "src": "favicon.ico",
