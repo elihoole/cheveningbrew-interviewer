@@ -51,13 +51,20 @@ export const AuthProvider = ({ children }) => {
     // Clear auth data with the utility function
     clearAuthData();
 
-    // Clear additional localStorage items
-    localStorage.removeItem('ally-supports-cache');
-    localStorage.removeItem('chatHistoryPath');
-    localStorage.removeItem('interviewDone');
-    localStorage.removeItem('interviewQuestions');
-    localStorage.removeItem('lk-user-choices');
-    localStorage.removeItem("paymentCompleted");
+    // Clear all application-specific localStorage items
+    const itemsToClear = [
+      'ally-supports-cache',
+      'chatHistoryPath',
+      'interviewDone',
+      'interviewQuestions',
+      'lk-user-choices',
+      'paymentCompleted',
+      'userEmail',
+      'userName',
+      'authToken'
+    ];
+
+    itemsToClear.forEach(item => localStorage.removeItem(item));
 
     // Reset authentication state
     setIsAuthenticated(false);

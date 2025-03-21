@@ -25,7 +25,7 @@ import { useNavigate } from "react-router-dom";
 function Page() {
   const [connectionDetails, updateConnectionDetails] = useState(null);
   const [agentState, setAgentState] = useState("disconnected");
-  const [timeRemaining, setTimeRemaining] = useState(15 * 60); // 15 minutes in seconds
+  const [timeRemaining, setTimeRemaining] = useState(20 * 60); // 15 minutes in seconds
   const [timerActive, setTimerActive] = useState(false);
   const navigate = useNavigate();
 
