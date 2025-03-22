@@ -94,7 +94,7 @@ const Upload = () => {
             <div className={styles.paymentPopupOverlay}>
               <div className={styles.paymentPopup}>
                 <div className={styles.paymentPopupHeader}>
-                  <h2 className={styles.h2}>Interview Rules</h2>
+                  <h2 className={styles.h2}>Important: interview rules</h2>
                 </div>
                 <div className={styles.rulesContent}>
                   <ol className={styles.rulesList}>
