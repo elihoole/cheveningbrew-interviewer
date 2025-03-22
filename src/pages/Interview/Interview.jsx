@@ -28,6 +28,8 @@ function Page() {
   const [timeRemaining, setTimeRemaining] = useState(20 * 60); // 15 minutes in seconds
   const [timerActive, setTimerActive] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [isDisconnecting, setIsDisconnecting] = useState(false);
+
   const navigate = useNavigate();
 
   // Check if interview has been completed already
@@ -70,9 +72,15 @@ function Page() {
       return;
     }
 
+    setIsDisconnecting(true);
     localStorage.setItem("interviewDone", "true");
     updateConnectionDetails(null);
-    navigate("/feedback");
+
+
+    setTimeout(() => {
+      navigate("/feedback");
+    }, 1000);
+
   };
 
   const handleRoomDisconnect = () => {
@@ -157,19 +165,19 @@ function Page() {
                 Are you sure you want to end the interview now? You will be assessed only on what you've completed so far and will not be allowed to retake the interview.
               </p>
               <div className={styles.confirmDialogButtons}>
-  <button
-    onClick={cancelEndInterview}
-    className={styles.confirmDialogCancelButton}
-  >
-    Cancel
-  </button>
-  <button
-    onClick={confirmEndInterview}
-    className={styles.confirmDialogEndButton}
-  >
-    End Interview
-  </button>
-</div>
+                <button
+                  onClick={cancelEndInterview}
+                  className={styles.confirmDialogCancelButton}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmEndInterview}
+                  className={styles.confirmDialogEndButton}
+                >
+                  End Interview
+                </button>
+              </div>
             </div>
           </div>
         )}
