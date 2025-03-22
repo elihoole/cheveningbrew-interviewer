@@ -7,8 +7,8 @@ const Help = () => {
   return (
     <SupportPagesLayout>
       <ActionBox>
-        <div className={styles.helpContent}>
-          <h1 className={styles.title}>Help</h1>
+        <div className={styles.supportContent}>
+          <h1 className={styles.pageTitle}>Help</h1>
           <p className={styles.description}>
             If you need help, please contact us at{" "}
             <a href="mailto:">

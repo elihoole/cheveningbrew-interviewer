@@ -7,8 +7,8 @@ const About = () => {
   return (
     <SupportPagesLayout>
       <ActionBox>
-        <div className={styles.aboutContent}>
-          <h1 className={styles.title}>About cheveningbrew.com</h1>
+        <div className={styles.supportContent}>
+          <h1 className={styles.pageTitle}>About cheveningbrew.com</h1>
           <p className={styles.description}>
             Most Chevening scholars personally knew an alumnus who helped them
             prepare for their final interview. Not all deserving candidates have
