@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import Logo from "../../components/Logo/Logo";
 import Footer from "../../components/Footer/Footer";
-import Footer from "../../components/Footer/Footer";
 import g from "../../assets/images/G.webp";
 import { useGoogleLogin } from "@react-oauth/google";
 import { validateToken, clearAuthData } from '../../utils/auth';

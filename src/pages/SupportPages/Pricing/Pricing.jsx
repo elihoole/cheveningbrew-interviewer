@@ -2,7 +2,6 @@ import React from "react";
 import SupportPagesLayout from "../../../layouts/SupportPagesLayout";
 import ActionBox from "../../../components/ActionBox/ActionBox";
 import styles from "../SupportPages.module.css";
-import styles from "../SupportPages.module.css";
 
 const Pricing = () => {
   return (
